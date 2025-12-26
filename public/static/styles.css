@@ -1,12 +1,14 @@
-/* Sovietwave цветовая палитра и общие стили - "Конструктивизм" */
+/* Цветовая палитра из видео - Вариант 1 (Тёмная тема) */
 :root {
-  --primary-red: #D32F2F;
-  --deep-burgundy: #B71C1C;
-  --cream-bg: #FFF8E1;
-  --dark-green: #2E7D32;
-  --golden-brown: #F9A825;
-  --text-dark: #212121;
-  --text-light: #FFF8E1;
+  --primary-red: #c95240;        /* rosy-copper - основной акцент */
+  --deep-burgundy: #511809;      /* espresso - тёмный фон */
+  --cream-bg: #511809;           /* espresso - фон страниц */
+  --dark-green: #534a1b;         /* olive-bark - акценты */
+  --golden-brown: #f99f37;       /* carrot-orange - золотые элементы */
+  --text-dark: #fcfada;          /* light-yellow - светлый текст на тёмном */
+  --text-light: #fcfada;         /* light-yellow - светлый текст */
+  --card-bg: #fcfada;            /* light-yellow - светлые карточки */
+  --charcoal-blue: #3a4756;      /* neutral accent */
 }
 
 * {
@@ -18,7 +20,7 @@
 body {
   font-family: 'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--cream-bg);
-  color: var(--text-dark);
+  color: var(--text-light);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -69,12 +71,20 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 /* Header */
 .site-header {
-  background-color: var(--deep-burgundy);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem 0;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease;
+}
+
+.site-header.scrolled {
+  background-color: rgba(81, 24, 9, 0.95);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .container {
@@ -116,50 +126,68 @@ h4 { font-size: 1.5rem; font-weight: 600; }
   color: var(--golden-brown);
 }
 
-/* Hero Section - New Design */
+/* Hero Section - Video Background */
 .hero-new {
   position: relative;
-  min-height: 700px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   padding: 0;
 }
 
-.hero-background {
+.hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  object-fit: cover;
+}
+
+.hero-video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(135deg, rgba(183, 28, 28, 0.90) 0%, rgba(211, 47, 47, 0.80) 50%, rgba(46, 125, 50, 0.70) 100%),
-    url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600') center/cover;
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
 }
 
 .hero-content-new {
   position: relative;
   z-index: 10;
-  max-width: 650px;
-  padding: 4rem 0;
+  text-align: center;
+  max-width: 900px;
+  padding: 2rem;
   color: white;
 }
 
 .hero-content-new h1 {
   color: white;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.1;
-  font-size: 3.5rem;
-  text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 3px 6px 20px rgba(0,0,0,0.7), 0 0 40px rgba(249, 159, 55, 0.3);
 }
 
-.hero-content-new p {
-  font-size: 1.3rem;
-  margin-bottom: 2.5rem;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 1px 2px 5px rgba(0,0,0,0.2);
-  line-height: 1.7;
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--golden-brown);
+  font-weight: 500;
+  margin-bottom: 3rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 /* Парящие элементы */
@@ -285,8 +313,9 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 .cta-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn {
@@ -303,14 +332,15 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 }
 
 .btn-primary {
-  background-color: var(--primary-red);
-  color: white;
+  background-color: var(--golden-brown);
+  color: var(--deep-burgundy);
+  font-weight: 700;
 }
 
 .btn-primary:hover {
-  background-color: #a33633;
+  background-color: #ffa94d;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(195, 66, 63, 0.3);
+  box-shadow: 0 8px 25px rgba(249, 159, 55, 0.5);
 }
 
 .btn-secondary {
@@ -325,13 +355,13 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 .btn-outline {
   background-color: transparent;
-  color: var(--deep-burgundy);
-  border: 2px solid var(--deep-burgundy);
+  color: white;
+  border: 2px solid white;
 }
 
 .btn-outline:hover {
-  background-color: var(--deep-burgundy);
-  color: white;
+  background-color: white;
+  color: var(--deep-burgundy);
 }
 
 .btn-large {
@@ -352,18 +382,19 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 }
 
 .floating-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
   border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   margin-bottom: 2rem;
   transition: all 0.3s;
   border-left: 4px solid var(--golden-brown);
+  color: var(--deep-burgundy);
 }
 
 .floating-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 50px rgba(249, 159, 55, 0.4);
   border-left-color: var(--primary-red);
 }
 
@@ -376,17 +407,18 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 }
 
 .project-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
   transition: all 0.3s;
   position: relative;
+  color: var(--deep-burgundy);
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 40px rgba(249, 159, 55, 0.4);
 }
 
 .project-image {
@@ -402,12 +434,12 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 .project-category {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: var(--dark-green);
-  color: white;
+  background-color: var(--golden-brown);
+  color: var(--deep-burgundy);
   font-size: 0.85rem;
   border-radius: 20px;
   margin-bottom: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .project-title {
@@ -538,10 +570,11 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 /* Footer */
 .site-footer {
-  background-color: var(--deep-burgundy);
+  background-color: rgba(0, 0, 0, 0.8);
   color: var(--text-light);
   padding: 3rem 0 1.5rem;
   margin-top: 4rem;
+  border-top: 3px solid var(--golden-brown);
 }
 
 .footer-content {
@@ -627,27 +660,26 @@ h4 { font-size: 1.5rem; font-weight: 600; }
   }
   
   .hero-new {
-    min-height: 500px;
+    min-height: 100vh;
   }
   
   .hero-content-new {
-    padding: 3rem 0;
+    padding: 2rem 1rem;
   }
   
   .hero-content-new h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
   }
   
-  .hero-content-new p {
-    font-size: 1.1rem;
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
   
-  .float-circle {
-    display: none;
-  }
-  
-  .float-star {
-    font-size: 1.5rem;
+  .btn-large {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
   
   .main-nav ul {

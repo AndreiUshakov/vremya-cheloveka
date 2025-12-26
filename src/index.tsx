@@ -190,31 +190,24 @@ app.get('/', async (c) => {
 
         <!-- Hero Section -->
         <section class="hero-new">
-            <!-- Фоновое изображение -->
-            <div class="hero-background"></div>
+            <!-- Видео фон -->
+            <video autoplay muted loop playsinline class="hero-video-bg">
+                <source src="/hero-video.mp4" type="video/mp4">
+            </video>
             
-            <!-- Парящие декоративные элементы -->
-            <div class="floating-elements">
-                <div class="float-circle float-1"></div>
-                <div class="float-circle float-2"></div>
-                <div class="float-circle float-3"></div>
-                <div class="float-star float-4">★</div>
-                <div class="float-star float-5">★</div>
-            </div>
+            <!-- Затемнение -->
+            <div class="hero-video-overlay"></div>
             
-            <!-- Контент слева -->
+            <!-- Контент по центру -->
             <div class="container">
                 <div class="hero-content-new fade-in-up">
-                    <h1>Время поддержать<br>моральные ценности</h1>
-                    <p>
-                        Благотворительный фонд «Время Человека» поддерживает инициативы 
-                        трезвого образа жизни, ответственного отцовства и заботы о будущем детей по всей России.
-                    </p>
+                    <h1>ВРЕМЯ ЧЕЛОВЕКА</h1>
+                    <p class="hero-subtitle">— Благотворительный фонд —</p>
                     <div class="cta-buttons">
                         <a href="#donate" class="btn btn-primary btn-large">
                             <i class="fas fa-hand-holding-heart"></i> Поддержать фонд
                         </a>
-                        <a href="/projects" class="btn btn-secondary btn-large">
+                        <a href="/projects" class="btn btn-outline btn-large">
                             <i class="fas fa-project-diagram"></i> Наши проекты
                         </a>
                     </div>
