@@ -192,7 +192,7 @@ app.get('/', async (c) => {
         <section class="hero-new">
             <!-- Видео фон -->
             <video autoplay muted loop playsinline class="hero-video-bg">
-                <source src="/hero-video.mp4" type="video/mp4">
+                <source src="/static/hero-video.mp4" type="video/mp4">
             </video>
             
             <!-- Затемнение -->
