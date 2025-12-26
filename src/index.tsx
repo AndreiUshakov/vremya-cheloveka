@@ -189,20 +189,32 @@ app.get('/', async (c) => {
         </header>
 
         <!-- Hero Section -->
-        <section class="hero layer-base">
-            <div class="diagonal-bg"></div>
+        <section class="hero-new">
+            <!-- Фоновое изображение -->
+            <div class="hero-background"></div>
+            
+            <!-- Парящие декоративные элементы -->
+            <div class="floating-elements">
+                <div class="float-circle float-1"></div>
+                <div class="float-circle float-2"></div>
+                <div class="float-circle float-3"></div>
+                <div class="float-star float-4">★</div>
+                <div class="float-star float-5">★</div>
+            </div>
+            
+            <!-- Контент слева -->
             <div class="container">
-                <div class="hero-content fade-in-up">
+                <div class="hero-content-new fade-in-up">
                     <h1>Время поддержать<br>моральные ценности</h1>
                     <p>
                         Благотворительный фонд «Время Человека» поддерживает инициативы 
                         трезвого образа жизни, ответственного отцовства и заботы о будущем детей по всей России.
                     </p>
                     <div class="cta-buttons">
-                        <a href="#donate" class="btn btn-primary">
+                        <a href="#donate" class="btn btn-primary btn-large">
                             <i class="fas fa-hand-holding-heart"></i> Поддержать фонд
                         </a>
-                        <a href="/projects" class="btn btn-secondary">
+                        <a href="/projects" class="btn btn-secondary btn-large">
                             <i class="fas fa-project-diagram"></i> Наши проекты
                         </a>
                     </div>
