@@ -1,12 +1,12 @@
-/* Sovietwave цветовая палитра и общие стили - "Космическая эра" */
+/* Sovietwave цветовая палитра и общие стили - "Конструктивизм" */
 :root {
-  --primary-red: #E53935;
-  --deep-burgundy: #1A237E;
-  --cream-bg: #ECEFF1;
-  --dark-green: #00796B;
-  --golden-brown: #FFA726;
-  --text-dark: #263238;
-  --text-light: #ECEFF1;
+  --primary-red: #D32F2F;
+  --deep-burgundy: #B71C1C;
+  --cream-bg: #FFF8E1;
+  --dark-green: #2E7D32;
+  --golden-brown: #F9A825;
+  --text-dark: #212121;
+  --text-light: #FFF8E1;
 }
 
 * {
@@ -133,7 +133,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(135deg, rgba(26, 35, 126, 0.88) 0%, rgba(0, 121, 107, 0.75) 50%, rgba(229, 57, 53, 0.65) 100%),
+    linear-gradient(135deg, rgba(183, 28, 28, 0.90) 0%, rgba(211, 47, 47, 0.80) 50%, rgba(46, 125, 50, 0.70) 100%),
     url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600') center/cover;
   z-index: 1;
 }
@@ -176,16 +176,16 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 .float-circle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 167, 38, 0.2);
+  background: rgba(249, 168, 37, 0.25);
   backdrop-filter: blur(5px);
-  box-shadow: 0 0 30px rgba(255, 167, 38, 0.3);
+  box-shadow: 0 0 30px rgba(249, 168, 37, 0.4);
 }
 
 .float-star {
   position: absolute;
   font-size: 2rem;
-  color: rgba(255, 167, 38, 0.5);
-  text-shadow: 0 0 15px rgba(255, 167, 38, 0.8), 0 0 30px rgba(0, 121, 107, 0.4);
+  color: rgba(249, 168, 37, 0.6);
+  text-shadow: 0 0 15px rgba(249, 168, 37, 0.9), 0 0 25px rgba(211, 47, 47, 0.3);
 }
 
 .float-1 {
