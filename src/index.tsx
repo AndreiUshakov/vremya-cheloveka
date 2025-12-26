@@ -216,7 +216,7 @@ app.get('/', async (c) => {
         </section>
 
         <!-- О фонде (краткая секция) -->
-        <section class="section section-overlap">
+        <section class="section">
             <div class="container">
                 <div class="floating-card">
                     <h2 class="text-center mb-2">
@@ -325,7 +325,7 @@ app.get('/', async (c) => {
         </section>
 
         <!-- Как работают пожертвования -->
-        <section class="section section-overlap">
+        <section class="section">
             <div class="container">
                 <div class="floating-card">
                     <h2 class="text-center text-burgundy mb-2">
@@ -454,6 +454,17 @@ app.get('/', async (c) => {
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+        <script>
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.site-header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        </script>
     </body>
     </html>
   `)
