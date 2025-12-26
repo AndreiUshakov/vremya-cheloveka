@@ -1,13 +1,14 @@
-/* Цветовая палитра из видео - Вариант 1 (Тёмная тема) */
+/* Цветовая палитра из видео - Вариант 2 (Светлая тема) ☀️ */
 :root {
   --primary-red: #c95240;        /* rosy-copper - основной акцент */
-  --deep-burgundy: #511809;      /* espresso - тёмный фон */
-  --cream-bg: #511809;           /* espresso - фон страниц */
+  --deep-burgundy: #511809;      /* espresso - тёмные акценты */
+  --cream-bg: #fcfada;           /* light-yellow - светлый фон */
   --dark-green: #534a1b;         /* olive-bark - акценты */
   --golden-brown: #f99f37;       /* carrot-orange - золотые элементы */
-  --text-dark: #fcfada;          /* light-yellow - светлый текст на тёмном */
+  --text-dark: #511809;          /* espresso - тёмный текст */
   --text-light: #fcfada;         /* light-yellow - светлый текст */
-  --card-bg: #fcfada;            /* light-yellow - светлые карточки */
+  --card-bg: #f99f37;            /* carrot-orange - золотые карточки */
+  --card-bg-alt: #c95240;        /* rosy-copper - альтернативные карточки */
   --charcoal-blue: #3a4756;      /* neutral accent */
 }
 
@@ -20,7 +21,7 @@
 body {
   font-family: 'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--cream-bg);
-  color: var(--text-light);
+  color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -71,20 +72,20 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 /* Header */
 .site-header {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--deep-burgundy);
   padding: 1rem 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   transition: background-color 0.3s ease;
 }
 
 .site-header.scrolled {
-  background-color: rgba(81, 24, 9, 0.95);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  background-color: var(--deep-burgundy);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .container {
@@ -418,7 +419,17 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(249, 159, 55, 0.4);
+  box-shadow: 0 15px 40px rgba(249, 159, 55, 0.5);
+}
+
+/* Альтернативные карточки - медно-красные */
+.project-card:nth-child(even) {
+  background: var(--card-bg-alt);
+  color: var(--text-light);
+}
+
+.project-card:nth-child(even):hover {
+  box-shadow: 0 15px 40px rgba(201, 82, 64, 0.5);
 }
 
 .project-image {
@@ -527,10 +538,11 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 }
 
 .news-card {
-  background: white;
+  background: var(--card-bg);
+  color: var(--deep-burgundy);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 15px rgba(0,0,0,0.15);
   transition: all 0.3s;
 }
 
@@ -570,7 +582,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 /* Footer */
 .site-footer {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--deep-burgundy);
   color: var(--text-light);
   padding: 3rem 0 1.5rem;
   margin-top: 4rem;
