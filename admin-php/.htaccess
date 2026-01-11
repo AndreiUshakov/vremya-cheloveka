@@ -1,0 +1,24 @@
+# Защита паролем для админ-панели
+AuthType Basic
+AuthName "Админ-панель - Вход разрешен только администраторам"
+AuthUserFile /var/www/u0557545/data/www/vremyacheloveka.ru/admin-php/.htpasswd
+Require valid-user
+
+# Запрет доступа к файлу паролей
+<Files .htpasswd>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Настройки PHP
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+php_value memory_limit 128M
+
+# Защита от XSS
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>

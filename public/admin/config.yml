@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+locale: ru
+
+collections:
+  - name: "projects"
+    label: "Проекты"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Название", name: "title", widget: "string"}
+      - {label: "URL (slug)", name: "slug", widget: "string"}
+      - {label: "Краткое описание", name: "shortDescription", widget: "text"}
+      - {label: "Категория", name: "category", widget: "select", options: ["children", "education", "health", "social", "other"]}
+      - {label: "Статус", name: "status", widget: "select", options: ["active", "completed", "archived"], default: "active"}
+      - {label: "Целевая сумма", name: "targetAmount", widget: "number", required: false}
+      - {label: "Собранная сумма", name: "collectedAmount", widget: "number", default: 0}
+      - {label: "Количество получателей", name: "beneficiariesCount", widget: "number", default: 0}
+      - {label: "Регионы", name: "regions", widget: "list", default: []}
+      - {label: "Изображение", name: "imageUrl", widget: "image"}
+      - label: "Этапы реализации"
+        name: "milestones"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Название", name: "title", widget: "string"}
+          - {label: "Описание", name: "description", widget: "text", required: false}
+          - {label: "Целевая дата", name: "targetDate", widget: "date", required: false}
+          - {label: "Завершено", name: "isCompleted", widget: "boolean", default: false}
+          - {label: "Порядок", name: "sortOrder", widget: "number", default: 0}
+      - {label: "Дата публикации", name: "publishedAt", widget: "datetime"}
+      - {label: "Полное описание", name: "body", widget: "markdown"}
+
+  - name: "news"
+    label: "Новости"
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "URL (slug)", name: "slug", widget: "string"}
+      - {label: "Краткое описание", name: "excerpt", widget: "text"}
+      - {label: "Связанный проект (slug)", name: "projectSlug", widget: "string", required: false}
+      - {label: "Изображение", name: "imageUrl", widget: "image", required: false}
+      - {label: "Дата публикации", name: "publishedAt", widget: "datetime"}
+      - {label: "Содержание", name: "body", widget: "markdown"}
+
+  - name: "reports"
+    label: "Отчёты"
+    folder: "src/content/reports"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Название", name: "title", widget: "string"}
+      - {label: "Год", name: "year", widget: "number"}
+      - {label: "Тип", name: "type", widget: "select", options: ["financial", "project", "annual"]}
+      - {label: "Связанный проект (slug)", name: "projectSlug", widget: "string", required: false}
+      - {label: "Файл PDF", name: "fileUrl", widget: "file"}
+      - {label: "Дата публикации", name: "publishedAt", widget: "datetime"}
+      - {label: "Описание", name: "body", widget: "markdown"}
+
+  - name: "partners"
+    label: "Партнёры"
+    folder: "src/content/partners"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - {label: "Название", name: "name", widget: "string"}
+      - {label: "Логотип", name: "logoUrl", widget: "image", required: false}
+      - {label: "Описание", name: "description", widget: "text", required: false}
+      - {label: "Веб-сайт", name: "website", widget: "string", required: false}
+      - {label: "Порядок сортировки", name: "sortOrder", widget: "number", default: 0}
+      - {label: "Активен", name: "isActive", widget: "boolean", default: true}
