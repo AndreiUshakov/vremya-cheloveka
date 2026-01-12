@@ -47,6 +47,7 @@ function renderLayout($content, $meta = []) {
     
     <!-- Стили -->
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/glass-theme.css">
     
     <!-- Дополнительные стили для конкретных страниц -->
     <?php if (isset($meta['additional_css'])): ?>
@@ -56,27 +57,6 @@ function renderLayout($content, $meta = []) {
     <?php endif; ?>
 </head>
 <body>
-    <!-- Шапка сайта -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <a href="/" class="logo">
-                    <i class="fas fa-heart"></i> <?= e(SITE_NAME) ?>
-                </a>
-                
-                <nav class="main-nav">
-                    <ul>
-                        <li><a href="/">Главная</a></li>
-                        <li><a href="/projects">Проекты</a></li>
-                        <li><a href="/about">О фонде</a></li>
-                        <li><a href="/reports">Отчёты</a></li>
-                        <li><a href="/contacts">Контакты</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    
     <!-- Основной контент -->
     <?= $content ?>
     
@@ -123,17 +103,32 @@ function renderLayout($content, $meta = []) {
         </div>
     </footer>
     
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.site-header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    </script>
+    <!-- Стеклянная навигация -->
+    <nav class="glass-bottom-nav <?= ($_SERVER['REQUEST_URI'] === '/' || strpos($_SERVER['REQUEST_URI'], '/index.php') !== false) ? 'nav-bottom' : 'nav-top' ?>">
+        <a href="/" class="glass-nav-item glass-nav-logo">
+            <img src="/static/img/logoWhiteTranPic.png" alt="<?= e(SITE_NAME) ?>" style="height: 40px;">
+        </a>
+        <a href="/" class="glass-nav-item <?= ($_SERVER['REQUEST_URI'] === '/' || strpos($_SERVER['REQUEST_URI'], '/index.php') !== false) ? 'active' : '' ?>">
+            <i class="fas fa-home"></i>
+            <span>О фонде</span>
+        </a>
+        <a href="/projects" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/projects') !== false ? 'active' : '' ?>">
+            <i class="fas fa-folder-open"></i>
+            <span>Программы</span>
+        </a>
+        <a href="/reports" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/reports') !== false ? 'active' : '' ?>">
+            <i class="fas fa-file-invoice"></i>
+            <span>Отчёты</span>
+        </a>
+        <a href="/contacts" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/contacts') !== false ? 'active' : '' ?>">
+            <i class="fas fa-phone"></i>
+            <span>Контакты</span>
+        </a>
+        <a href="#donate" class="glass-nav-item glass-nav-cta">
+            <i class="fas fa-hand-holding-heart"></i>
+            <span>Сделать взнос</span>
+        </a>
+    </nav>
     
     <!-- Дополнительные скрипты для конкретных страниц -->
     <?php if (isset($meta['additional_js'])): ?>

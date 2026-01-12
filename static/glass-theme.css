@@ -1,0 +1,596 @@
+/* ============================================
+   GLASSMORPHISM DARK THEME
+   Modern dark-themed interface with glass effects
+   ============================================ */
+
+:root {
+  /* Тёмная тема - основные цвета */
+  --glass-dark-bg-1: #0a0e27;
+  --glass-dark-bg-2: #1a1f3a;
+  --glass-navy: #1e2742;
+  --glass-electric-blue: #4a90e2;
+  --glass-royal-blue: #2563eb;
+  
+  /* Золотые акценты */
+  --glass-gold: #fde9a9;/*      #d4af37; */
+  --glass-amber: #ffb340;
+  --glass-warm-gold: #f5b942;
+  
+  /* Стеклянные поверхности */
+  --glass-overlay: rgba(255, 255, 255, 0.1);
+  --glass-overlay-hover: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  
+  /* Текст */
+  --glass-text-primary: rgba(255, 255, 255, 0.9);
+  --glass-text-secondary: rgba(255, 255, 255, 0.7);
+  --glass-text-muted: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   BODY & BACKGROUND
+   ============================================ */
+
+body {
+  background: url('/static/img/bg1.png') center center / cover no-repeat fixed;
+  color: var(--glass-text-primary);
+  min-height: 100vh;
+}
+
+/* Абстрактный фон с радиальными градиентами */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(
+      ellipse at 20% 30%,
+      rgba(74, 144, 226, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 70%,
+      rgba(212, 175, 55, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   GLASSMORPHISM BASE COMPONENTS
+   ============================================ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Стеклянная карточка с внутренним свечением */
+.glass-card-glow {
+  background: rgba(30, 39, 66, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card-glow:hover {
+  background: rgba(30, 39, 66, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   GLASS NAVIGATION (ADAPTIVE POSITIONING)
+   ============================================ */
+
+.glass-bottom-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  
+  /* Glassmorphism эффект */
+  background: rgba(30, 39, 66, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Стилизация */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  
+  /* Тени */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(74, 144, 226, 0.3);
+  
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Меню вверху (для внутренних страниц) */
+.glass-bottom-nav.nav-top {
+  top: 2rem;
+}
+
+/* Меню внизу (для главной страницы) */
+.glass-bottom-nav.nav-bottom {
+  bottom: 2rem;
+}
+
+/* Элементы навигации */
+.glass-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  color: var(--glass-text-secondary);
+  text-decoration: none;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.glass-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--glass-text-primary);
+  transform: translateY(-2px);
+}
+
+.glass-nav-item.active {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--glass-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Золотая кнопка действия */
+.glass-nav-cta {
+  background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%);
+  color: #0a0e27;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.glass-nav-cta:hover {
+  background: linear-gradient(135deg, #ffb340 0%, #fde9a9 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+  color: #0a0e27;
+}
+
+/* Логотип в нижнем меню */
+.glass-nav-logo {
+  padding: 0 1rem 0 0;
+}
+
+.glass-nav-logo:hover {
+  background: transparent;
+  transform: none;
+}
+
+/* ============================================
+   PROGRAM/PROJECT CARDS
+   ============================================ */
+
+.glass-program-card {
+  background: rgba(30, 39, 66, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--glass-gold) 0%, var(--glass-amber) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-program-card:hover {
+  background: rgba(30, 39, 66, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.glass-program-card:hover::before {
+  opacity: 1;
+}
+
+/* Иконка в карточке */
+.glass-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0e27;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  animation: goldPulse 3s ease-in-out infinite;
+}
+
+/* ============================================
+   MISSION/ABOUT CARDS
+   ============================================ */
+
+.glass-mission-card {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(74, 144, 226, 0.1) 100%
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-mission-card h2,
+.glass-mission-card h3 {
+  color: var(--glass-text-primary);
+  margin-bottom: 1rem;
+}
+
+.glass-mission-card p {
+  color: var(--glass-text-secondary);
+  line-height: 1.8;
+}
+
+/* ============================================
+   NEWS/BLOG CARDS
+   ============================================ */
+
+.glass-news-card {
+  background: rgba(30, 39, 66, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.glass-news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.glass-news-card .news-content {
+  padding: 1.5rem;
+}
+
+.glass-news-card .news-title {
+  color: var(--glass-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.glass-news-card .news-excerpt {
+  color: var(--glass-text-secondary);
+  line-height: 1.6;
+}
+
+.glass-news-card .news-date {
+  color: var(--glass-text-muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.glass-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.glass-btn-primary {
+  background: linear-gradient(135deg, var(--glass-gold) 0%, var(--glass-amber) 100%);
+  color: #0a0e27;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.glass-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+.glass-btn-outline {
+  background: transparent;
+  color: var(--glass-text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--glass-gold);
+  color: var(--glass-gold);
+}
+
+.glass-btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.glass-section {
+  position: relative;
+  padding: 4rem 0;
+  z-index: 1;
+}
+
+.glass-section-title {
+  text-align: center;
+  color: var(--glass-text-primary);
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.glass-section-title i {
+  color: var(--glass-gold);
+  margin-right: 0.5rem;
+}
+
+/* ============================================
+   GRID LAYOUTS
+   ============================================ */
+
+.glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.glass-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.glass-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.site-footer {
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  margin-top: 6rem;
+}
+
+/* Дополнительный отступ внизу только на главной странице (для нижнего меню) */
+body:has(.glass-bottom-nav.nav-bottom) .site-footer {
+  padding-bottom: 8rem;
+}
+
+.site-footer h4 {
+  color: var(--glass-gold);
+}
+
+.site-footer a {
+  color: var(--glass-text-secondary);
+}
+
+.site-footer a:hover {
+  color: var(--glass-gold);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes glassSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(212, 175, 55, 0.6);
+  }
+}
+
+.glass-animate {
+  animation: glassSlideUp 0.6s ease-out;
+}
+
+.glass-animate-delay-1 {
+  animation: glassSlideUp 0.6s ease-out 0.1s backwards;
+}
+
+.glass-animate-delay-2 {
+  animation: glassSlideUp 0.6s ease-out 0.2s backwards;
+}
+
+.glass-animate-delay-3 {
+  animation: glassSlideUp 0.6s ease-out 0.3s backwards;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .glass-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-bottom-nav.nav-top {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    padding: 0.75rem 1rem;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .glass-bottom-nav.nav-bottom {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    padding: 0.75rem 1rem;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .glass-nav-item {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .glass-nav-item i {
+    font-size: 1.2rem;
+  }
+  
+  .glass-nav-item span {
+    font-size: 0.7rem;
+  }
+  
+  .glass-section-title {
+    font-size: 2rem;
+  }
+  
+  .glass-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .glass-card,
+  .glass-program-card,
+  .glass-mission-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-bottom-nav {
+    padding: 0.5rem;
+    gap: 0.25rem;
+  }
+  
+  .glass-nav-item {
+    padding: 0.4rem 0.5rem;
+  }
+  
+  .glass-btn-large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.glass-text-gold {
+  color: var(--glass-gold);
+}
+
+.glass-text-primary {
+  color: var(--glass-text-primary);
+}
+
+.glass-text-secondary {
+  color: var(--glass-text-secondary);
+}
+
+.glass-text-center {
+  text-align: center;
+}
+
+.glass-mb-2 {
+  margin-bottom: 2rem;
+}
+
+.glass-mt-2 {
+  margin-top: 2rem;
+}
+
+.glass-p-relative {
+  position: relative;
+  z-index: 1;
+}
