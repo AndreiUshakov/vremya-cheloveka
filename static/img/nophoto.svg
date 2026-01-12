@@ -1,0 +1,11 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#e0e0e0"/>
+  <text x="200" y="140" font-family="Arial, sans-serif" font-size="20" fill="#999" text-anchor="middle">
+    Нет изображения
+  </text>
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="14" fill="#aaa" text-anchor="middle">
+    Загрузите фото проекта
+  </text>
+  <circle cx="200" cy="220" r="30" fill="#ccc"/>
+  <path d="M 200 200 L 200 240 M 180 220 L 220 220" stroke="#999" stroke-width="3" fill="none"/>
+</svg>

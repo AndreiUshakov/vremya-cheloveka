@@ -68,8 +68,8 @@ RewriteRule ^donate/?$ donate.php [L]
 # Запрет доступа к директории includes
 RewriteRule ^includes/ - [F,L]
 
-# Запрет доступа к src/content (если она в веб-корне)
-RewriteRule ^src/ - [F,L]
+# Запрет доступа к content (файлы markdown)
+RewriteRule ^content/ - [F,L]
 
 # ====================================================================
 # Кеширование статических файлов

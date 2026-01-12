@@ -6,8 +6,8 @@
 
 ### Как это работает
 
-1. **Модераторы** редактируют контент через PHP-админку (`/admin-php/`)
-2. **Изменения** сохраняются в `.md` и `.json` файлы в `src/content/`
+1. **Модераторы** редактируют контент через PHP-админку (`/admin/`)
+2. **Изменения** сохраняются в `.md` и `.json` файлы в `content/`
 3. **PHP-сайт** читает эти файлы напрямую и отображает контент
 4. **Никакой пересборки** не требуется — изменения видны сразу
 
@@ -22,27 +22,29 @@
 ## Структура файлов
 
 ```
-php-site/
+vremya-cheloveka/
 ├── .htaccess              # ЧПУ и настройки безопасности
 ├── config.php             # Общая конфигурация
 ├── index.php              # Главная страница
 ├── projects.php           # Список проектов
 ├── project.php            # Отдельный проект
-├── news.php               # Список новостей (создайте по аналогии)
-├── news-single.php        # Отдельная новость (создайте по аналогии)
+├── admin/                 # Админ-панель
+├── content/               # Контент в Markdown
+│   ├── projects/
+│   ├── news/
+│   ├── reports/
+│   └── partners/
 ├── includes/
 │   ├── MarkdownParser.php # Парсер .md файлов
 │   └── layout.php         # Базовый layout
-├── css/                   # CSS стили
-├── js/                    # JavaScript
-└── images/                # Изображения
+└── static/                # CSS, JS, изображения
 ```
 
 ## Установка
 
 ### 1. Загрузка на сервер
 
-Загрузите всю папку `php-site/` на хостинг:
+Загрузите весь проект на хостинг:
 
 ```
 /var/www/u0557545/data/www/vremyacheloveka.ru/
@@ -54,21 +56,19 @@ php-site/
 
 ```
 /var/www/u0557545/data/www/vremyacheloveka.ru/
-├── admin-php/           # PHP админка
-├── src/content/         # Контент в Markdown
+├── admin/               # PHP админка
+├── content/             # Контент в Markdown
 │   ├── projects/
 │   ├── news/
 │   ├── reports/
 │   └── partners/
-├── .htaccess            # ЧПУ (из php-site/)
+├── includes/            # PHP классы
+├── static/              # Статические файлы
+├── .htaccess            # ЧПУ и безопасность
 ├── config.php           # Конфигурация
 ├── index.php            # Главная
 ├── projects.php         # Проекты
-├── project.php          # Один проект
-├── includes/
-├── css/
-├── js/
-└── images/
+└── project.php          # Один проект
 ```
 
 ### 3. Настройка путей
@@ -76,18 +76,18 @@ php-site/
 Откройте `config.php` и проверьте пути:
 
 ```php
-define('CONTENT_DIR', __DIR__ . '/../src/content');
+define('CONTENT_DIR', ROOT_DIR . '/content');
 ```
 
-Если структура отличается, измените пути соответственно.
+Пути настроены относительно корня проекта.
 
 ### 4. Права доступа
 
 ```bash
 # Права на чтение для PHP
-chmod 755 /var/www/u0557545/data/www/vremyacheloveka.ru/src/content/
-chmod 644 /var/www/u0557545/data/www/vremyacheloveka.ru/src/content/projects/*.md
-chmod 644 /var/www/u0557545/data/www/vremyacheloveka.ru/src/content/news/*.md
+chmod 755 /var/www/u0557545/data/www/vremyacheloveka.ru/content/
+chmod 644 /var/www/u0557545/data/www/vremyacheloveka.ru/content/projects/*.md
+chmod 644 /var/www/u0557545/data/www/vremyacheloveka.ru/content/news/*.md
 ```
 
 ## ЧПУ (Человеко-Понятные URL)
@@ -118,7 +118,7 @@ RewriteRule ^about/?$ about.php [L]
 
 ### Структура Markdown файла
 
-Пример `src/content/projects/trezvaya-rossiya.md`:
+Пример `content/projects/trezvaya-rossiya.md`:
 
 ```markdown
 ---
@@ -278,7 +278,7 @@ endContent(['title' => 'Новости']);
 
 ### 1. Редактирование через админку
 
-1. Откройте `https://vremyacheloveka.ru/admin-php/`
+1. Откройте `https://vremyacheloveka.ru/admin/`
 2. Войдите с логином/паролем
 3. Создайте или отредактируйте проект/новость
 4. Изменения сразу видны на сайте
@@ -288,7 +288,7 @@ endContent(['title' => 'Новости']);
 Если нужно отредактировать файл напрямую:
 
 1. Подключитесь к серверу по SFTP
-2. Откройте `src/content/projects/trezvaya-rossiya.md`
+2. Откройте `content/projects/trezvaya-rossiya.md`
 3. Внесите изменения
 4. Сохраните — изменения сразу на сайте
 
@@ -298,7 +298,7 @@ endContent(['title' => 'Новости']);
 
 `.htaccess` блокирует доступ к:
 - `/includes/` — PHP классы
-- `/src/` — исходный контент
+- `/content/` — исходный контент
 - `.htaccess`, `.env` и другие служебные файлы
 
 ### Защита от XSS
@@ -361,7 +361,7 @@ service apache2 restart
 
 ### Проекты не отображаются
 
-1. Проверьте права на чтение: `chmod 644 src/content/projects/*.md`
+1. Проверьте права на чтение: `chmod 644 content/projects/*.md`
 2. Проверьте путь в `config.php`
 3. Убедитесь, что frontmatter корректен (между `---`)
 

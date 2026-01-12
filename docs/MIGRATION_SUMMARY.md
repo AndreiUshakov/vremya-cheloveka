@@ -9,25 +9,25 @@
 
 ### 2. Мигрированы данные из SQL в Markdown
 
-**Проекты** (`src/content/projects/`):
-- ✅ [`trezvaya-rossiya.md`](src/content/projects/trezvaya-rossiya.md) - "Трезвая Россия"
-- ✅ [`budushchee-nashikh-detey.md`](src/content/projects/budushchee-nashikh-detey.md) - "Будущее наших детей"
-- ✅ [`otvetstvennoe-ottsovstvo.md`](src/content/projects/otvetstvennoe-ottsovstvo.md) - "Ответственное отцовство"
+**Проекты** (`content/projects/`):
+- ✅ [`trezvaya-rossiya.md`](../content/projects/trezvaya-rossiya.md) - "Трезвая Россия"
+- ✅ [`budushchee-nashikh-detey.md`](../content/projects/budushchee-nashikh-detey.md) - "Будущее наших детей"
+- ✅ [`otvetstvennoe-ottsovstvo.md`](../content/projects/otvetstvennoe-ottsovstvo.md) - "Ответственное отцовство"
 
-**Новости** (`src/content/news/`):
-- ✅ [`otkrytie-tsentra-podderzhki-v-ekaterinburge.md`](src/content/news/otkrytie-tsentra-podderzhki-v-ekaterinburge.md)
-- ✅ [`itogi-2024-goda.md`](src/content/news/itogi-2024-goda.md)
+**Новости** (`content/news/`):
+- ✅ [`otkrytie-tsentra-podderzhki-v-ekaterinburge.md`](../content/news/otkrytie-tsentra-podderzhki-v-ekaterinburge.md)
+- ✅ [`itogi-2024-goda.md`](../content/news/itogi-2024-goda.md)
 
-**Отчёты** (`src/content/reports/`):
-- ✅ [`financial-2024.md`](src/content/reports/financial-2024.md)
-- ✅ [`trezvaya-rossiya-2024.md`](src/content/reports/trezvaya-rossiya-2024.md)
+**Отчёты** (`content/reports/`):
+- ✅ [`financial-2024.md`](../content/reports/financial-2024.md)
+- ✅ [`trezvaya-rossiya-2024.md`](../content/reports/trezvaya-rossiya-2024.md)
 
-**Партнёры** (`src/content/partners/`):
-- ✅ [`iro.json`](src/content/partners/iro.json) - АНО "Институт развития общества"
-- ✅ [`minzdrav.json`](src/content/partners/minzdrav.json) - Минздрав РФ
+**Партнёры** (`content/partners/`):
+- ✅ [`iro.json`](../content/partners/iro.json) - АНО "Институт развития общества"
+- ✅ [`minzdrav.json`](../content/partners/minzdrav.json) - Минздрав РФ
 
 ### 3. Настроены коллекции контента
-- ✅ [`src/content/config.ts`](src/content/config.ts) - схемы для всех коллекций (проекты, новости, отчёты, партнёры)
+- ✅ Схемы для всех коллекций (проекты, новости, отчёты, партнёры)
 
 ### 4. Созданы layouts и компоненты
 - ✅ [`src/layouts/BaseLayout.astro`](src/layouts/BaseLayout.astro) - базовый layout с header и footer

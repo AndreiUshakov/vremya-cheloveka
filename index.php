@@ -3,37 +3,159 @@
  * Главная страница сайта
  */
 
-require_once __DIR__ . '/config.php';
-require_once INCLUDES_DIR . '/layout.php';
+// Включаем отображение ошибок для диагностики
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Получаем данные
-$projects = MarkdownParser::getAllFromDirectory(PROJECTS_DIR);
-$projects = MarkdownParser::sort($projects, 'publishedAt', 'desc');
-$featuredProjects = MarkdownParser::getFeatured($projects, FEATURED_PROJECTS_COUNT);
-
-$news = MarkdownParser::getAllFromDirectory(NEWS_DIR);
-$news = MarkdownParser::sort($news, 'publishedAt', 'desc');
-$recentNews = array_slice($news, 0, RECENT_NEWS_COUNT);
-
-// Статистика
-$totalBeneficiaries = 0;
-$totalCollected = 0;
-$activeProjectsCount = 0;
-
-foreach ($projects as $project) {
-    if (isset($project['beneficiariesCount'])) {
-        $totalBeneficiaries += $project['beneficiariesCount'];
-    }
-    if (isset($project['collectedAmount'])) {
-        $totalCollected += $project['collectedAmount'];
-    }
-    if (isset($project['status']) && $project['status'] === 'active') {
-        $activeProjectsCount++;
-    }
+// Функция для логирования ошибок
+function logError($message, $context = []) {
+    $logFile = __DIR__ . '/error.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $contextStr = !empty($context) ? ' | Context: ' . json_encode($context, JSON_UNESCAPED_UNICODE) : '';
+    $logMessage = "[{$timestamp}] {$message}{$contextStr}\n";
+    error_log($logMessage, 3, $logFile);
 }
 
-// Начинаем буферизацию контента
-startContent();
+// Функция для отображения страницы ошибки
+function showErrorPage($message, $details = '') {
+    http_response_code(500);
+    ?>
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ошибка - Время Человека</title>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 20px;
+            }
+            .error-container {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                padding: 40px;
+                max-width: 600px;
+                text-align: center;
+            }
+            .error-icon {
+                font-size: 64px;
+                color: #e74c3c;
+                margin-bottom: 20px;
+            }
+            h1 {
+                color: #2c3e50;
+                margin: 0 0 15px 0;
+                font-size: 28px;
+            }
+            p {
+                color: #7f8c8d;
+                margin: 0 0 25px 0;
+                line-height: 1.6;
+            }
+            .details {
+                background: #f8f9fa;
+                border-left: 4px solid #e74c3c;
+                padding: 15px;
+                margin: 20px 0;
+                text-align: left;
+                font-family: monospace;
+                font-size: 13px;
+                overflow-x: auto;
+                color: #2c3e50;
+            }
+            .btn {
+                display: inline-block;
+                background: #667eea;
+                color: white;
+                padding: 12px 30px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s;
+            }
+            .btn:hover {
+                background: #764ba2;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            <div class="error-icon">⚠️</div>
+            <h1>Произошла ошибка</h1>
+            <p><?= htmlspecialchars($message) ?></p>
+            <?php if ($details): ?>
+            <div class="details">
+                <strong>Подробности:</strong><br>
+                <?= nl2br(htmlspecialchars($details)) ?>
+            </div>
+            <?php endif; ?>
+            <a href="/" class="btn">Вернуться на главную</a>
+        </div>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+
+try {
+    require_once __DIR__ . '/config.php';
+    require_once INCLUDES_DIR . '/layout.php';
+
+    // Проверка существования необходимых директорий
+    if (!is_dir(PROJECTS_DIR)) {
+        throw new Exception('Директория проектов не найдена: ' . PROJECTS_DIR);
+    }
+    if (!is_dir(NEWS_DIR)) {
+        throw new Exception('Директория новостей не найдена: ' . NEWS_DIR);
+    }
+
+    // Получаем данные с обработкой ошибок
+    $projects = MarkdownParser::getAllFromDirectory(PROJECTS_DIR);
+    if ($projects === null) {
+        throw new Exception('Не удалось загрузить проекты');
+    }
+    
+    $projects = MarkdownParser::sort($projects, 'publishedAt', 'desc');
+    $featuredProjects = MarkdownParser::getFeatured($projects, FEATURED_PROJECTS_COUNT);
+
+    $news = MarkdownParser::getAllFromDirectory(NEWS_DIR);
+    if ($news === null) {
+        throw new Exception('Не удалось загрузить новости');
+    }
+    
+    $news = MarkdownParser::sort($news, 'publishedAt', 'desc');
+    $featuredNews = MarkdownParser::getFeatured($news, RECENT_NEWS_COUNT);
+
+    // Статистика
+    $totalBeneficiaries = 0;
+    $totalCollected = 0;
+    $activeProjectsCount = 0;
+
+    foreach ($projects as $project) {
+        if (isset($project['beneficiariesCount'])) {
+            $totalBeneficiaries += (int)$project['beneficiariesCount'];
+        }
+        if (isset($project['collectedAmount'])) {
+            $totalCollected += (int)$project['collectedAmount'];
+        }
+        if (isset($project['status']) && $project['status'] === 'active') {
+            $activeProjectsCount++;
+        }
+    }
+
+    // Начинаем буферизацию контента
+    startContent();
 ?>
 
 <!-- Секция Hero -->
@@ -108,7 +230,7 @@ startContent();
                 <img src="<?= e($project['imageUrl']) ?>" alt="<?= e($project['title']) ?>" class="project-image" />
                 <?php endif; ?>
                 <div class="project-content">
-                    <span class="project-category"><?= e($project['category'] ?? 'Другое') ?></span>
+                    <span class="project-category"><?= e(PROJECT_CATEGORIES[$project['category']] ?? PROJECT_CATEGORIES['other'] ?? 'Другое') ?></span>
                     <h3 class="project-title"><?= e($project['title']) ?></h3>
                     <p class="project-description"><?= e($project['shortDescription'] ?? '') ?></p>
                     
@@ -182,7 +304,7 @@ startContent();
 </section>
 
 <!-- Новости -->
-<?php if (!empty($recentNews)): ?>
+<?php if (!empty($featuredNews)): ?>
 <section class="section rays-bg">
     <div class="container">
         <h2 class="text-center text-burgundy mb-2">
@@ -190,7 +312,7 @@ startContent();
             Новости и обновления
         </h2>
         <div class="news-grid">
-            <?php foreach ($recentNews as $item): ?>
+            <?php foreach ($featuredNews as $item): ?>
             <div class="news-card">
                 <?php if (!empty($item['imageUrl'])): ?>
                 <img src="<?= e($item['imageUrl']) ?>" alt="<?= e($item['title']) ?>" class="news-image" />
@@ -238,9 +360,31 @@ startContent();
 </section>
 
 <?php
-// Завершаем буферизацию и рендерим страницу
-endContent([
-    'title' => 'Главная',
-    'description' => 'Благотворительный фонд "Время Человека" — помощь людям, нуждающимся в поддержке. Узнайте о наших проектах и присоединяйтесь к доброму делу.'
-]);
+    // Завершаем буферизацию и рендерим страницу
+    endContent([
+        'title' => 'Главная',
+        'description' => 'Благотворительный фонд "Время Человека" — помощь людям, нуждающимся в поддержке. Узнайте о наших проектах и присоединяйтесь к доброму делу.'
+    ]);
+    
+} catch (Exception $e) {
+    // Если ошибка произошла после начала буферизации, очищаем буфер
+    if (ob_get_level() > 0) {
+        ob_end_clean();
+    }
+    
+    // Логируем ошибку
+    logError('Ошибка на главной странице: ' . $e->getMessage(), [
+        'file' => $e->getFile(),
+        'line' => $e->getLine(),
+        'trace' => $e->getTraceAsString()
+    ]);
+    
+    // Показываем страницу ошибки с подробностями
+    showErrorPage(
+        'К сожалению, не удалось загрузить главную страницу. Мы уже работаем над решением проблемы.',
+        "Ошибка: " . $e->getMessage() . "\n" .
+        "Файл: " . $e->getFile() . "\n" .
+        "Строка: " . $e->getLine()
+    );
+}
 ?>

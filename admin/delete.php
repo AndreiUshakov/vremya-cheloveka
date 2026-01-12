@@ -15,14 +15,10 @@ if (!file_exists($filepath)) {
     exit;
 }
 
-// Подтверждение удаления
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
-    if (unlink($filepath)) {
-        header('Location: ?action=list&type=' . $type . '&deleted=1');
-        exit;
-    } else {
-        $error = 'Ошибка удаления файла';
-    }
+// Обработка POST теперь в index.php, здесь только проверка на ошибки из сессии
+$error = $_SESSION['error'] ?? null;
+if ($error) {
+    unset($_SESSION['error']);
 }
 
 // Получаем название для отображения

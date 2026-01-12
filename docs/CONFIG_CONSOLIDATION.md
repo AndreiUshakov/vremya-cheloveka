@@ -3,8 +3,8 @@
 ## Проблема
 
 Ранее в проекте существовало два отдельных конфига:
-- `php-site/config.php` - для публичной части сайта
-- `admin-php/config.php` - для админ-панели
+- `config.php` - для публичной части сайта
+- `admin/config.php` - для админ-панели
 
 Это приводило к проблемам:
 - Дублирование кода и настроек
@@ -13,27 +13,27 @@
 
 ## Решение
 
-Создан единый конфигурационный файл [`php-site/config.php`](php-site/config.php), который является основным конфигом, так как **`php-site/` - это корень сайта на хостинге**.
+Создан единый конфигурационный файл [`config.php`](../config.php), который является основным конфигом для всего проекта.
 
 ### Глобальные константы путей
 
 ```php
-// Корневая директория сайта (php-site является корнем на хостинге)
+// Корневая директория сайта
 define('ROOT_DIR', __DIR__);
 
-// Пути к директориям контента (относительно корня сайта)
-define('CONTENT_DIR', ROOT_DIR . '/../src/content');
+// Пути к директориям контента (теперь в /content)
+define('CONTENT_DIR', ROOT_DIR . '/content');
 define('PROJECTS_DIR', CONTENT_DIR . '/projects');
 define('NEWS_DIR', CONTENT_DIR . '/news');
 define('REPORTS_DIR', CONTENT_DIR . '/reports');
 define('PARTNERS_DIR', CONTENT_DIR . '/partners');
 ```
 
-**Важно:** Все пути построены от `ROOT_DIR` (который указывает на `php-site/`), и контент находится в `../src/content/` относительно корня сайта.
+**Важно:** Все пути построены от `ROOT_DIR`, и контент находится в директории `content/` в корне проекта.
 
 ### Общие настройки
 
-В [`php-site/config.php`](php-site/config.php) содержатся:
+В [`config.php`](../config.php) содержатся:
 - Категории проектов (`PROJECT_CATEGORIES`)
 - Статусы проектов (`PROJECT_STATUSES`)
 - Типы отчётов (`REPORT_TYPES`)
@@ -46,15 +46,15 @@ define('PARTNERS_DIR', CONTENT_DIR . '/partners');
 ## Структура после изменений
 
 ### Основной конфиг
-- [`php-site/config.php`](php-site/config.php) - **главный** конфигурационный файл (корень сайта на хостинге)
+- [`config.php`](../config.php) - **главный** конфигурационный файл в корне проекта
 
 ### Конфиг админ-панели
 
-#### [`admin-php/config.php`](admin-php/config.php)
+#### [`admin/config.php`](../admin/config.php)
 ```php
 <?php
-// Подключает основной конфиг из php-site
-require_once __DIR__ . '/../php-site/config.php';
+// Подключает основной конфиг сайта
+require_once __DIR__ . '/../config.php';
 
 // Здесь можно добавить специфичные для админки настройки
 ```
@@ -63,34 +63,33 @@ require_once __DIR__ . '/../php-site/config.php';
 
 ```
 /var/www/vremyacheloveka.ru/
-├── php-site/              # Корень сайта (публичная директория)
-│   ├── config.php         # Основной конфиг
-│   ├── index.php
-│   ├── projects.php
-│   ├── project.php
-│   └── includes/
-│       ├── layout.php
-│       └── MarkdownParser.php
-├── admin-php/             # Админ-панель (защищена .htaccess)
-│   ├── config.php         # Подключает php-site/config.php
+├── admin/                 # Админ-панель (защищена .htaccess)
+│   ├── config.php         # Подключает ../config.php
 │   ├── index.php
 │   ├── dashboard.php
 │   ├── list.php
 │   ├── edit.php
 │   └── delete.php
-└── src/
-    └── content/           # Директория с контентом
-        ├── projects/
-        ├── news/
-        ├── reports/
-        └── partners/
+├── content/               # Директория с контентом
+│   ├── projects/
+│   ├── news/
+│   ├── reports/
+│   └── partners/
+├── includes/              # PHP классы
+│   ├── layout.php
+│   └── MarkdownParser.php
+├── static/                # Статические файлы
+├── config.php             # Основной конфиг
+├── index.php              # Главная страница
+├── projects.php           # Список проектов
+└── project.php            # Отдельный проект
 ```
 
 ## Преимущества
 
-1. **Единственный источник истины** - все настройки в [`php-site/config.php`](php-site/config.php)
+1. **Единственный источник истины** - все настройки в [`config.php`](../config.php)
 2. **Согласованные пути** - и сайт, и админка используют одинаковые пути к контенту
-3. **Правильная структура для хостинга** - `php-site/` является корнем, как на сервере
+3. **Простая структура** - все файлы в корне проекта
 4. **Легкость поддержки** - изменения нужно вносить только в один файл
 5. **Меньше дублирования** - общие функции и константы определены один раз
 6. **Предотвращение ошибок** - невозможно рассогласование настроек между частями системы
@@ -98,12 +97,12 @@ require_once __DIR__ . '/../php-site/config.php';
 ## Проверка корректности
 
 Все директории контента существуют и доступны:
-- ✅ `src/content/`
-- ✅ `src/content/projects/` (3 проекта)
-- ✅ `src/content/news/` (2 новости)
-- ✅ `src/content/reports/` (2 отчёта)
-- ✅ `src/content/partners/` (2 партнёра)
+- ✅ `content/`
+- ✅ `content/projects/` (3 проекта)
+- ✅ `content/news/` (2 новости)
+- ✅ `content/reports/` (2 отчёта)
+- ✅ `content/partners/` (2 партнёра)
 
 ## Миграция завершена
 
-Все файлы обновлены и используют новую структуру конфигурации с [`php-site/config.php`](php-site/config.php) в качестве основного конфига.
+Все файлы обновлены и используют новую структуру конфигурации с [`config.php`](../config.php) в качестве основного конфига.

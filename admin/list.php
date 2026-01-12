@@ -44,6 +44,18 @@ usort($items, function($a, $b) {
         <a href="?action=create&type=<?= e($type) ?>" class="btn btn-success">+ Создать</a>
     </div>
 
+    <?php if (isset($_GET['success'])): ?>
+        <div class="alert alert-success">
+            <?= $type === 'projects' ? 'Проект' : 'Новость' ?> успешно сохранен<?= $type === 'projects' ? '' : 'а' ?>!
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['deleted'])): ?>
+        <div class="alert alert-success">
+            <?= $type === 'projects' ? 'Проект' : 'Новость' ?> успешно удален<?= $type === 'projects' ? '' : 'а' ?>!
+        </div>
+    <?php endif; ?>
+
     <?php if (empty($items)): ?>
         <div class="empty-state">
             <p>Пока нет <?= $type === 'projects' ? 'проектов' : 'новостей' ?></p>
@@ -61,6 +73,7 @@ usort($items, function($a, $b) {
                         <?php else: ?>
                             <th>Проект</th>
                         <?php endif; ?>
+                        <th>На главной</th>
                         <th>Дата публикации</th>
                         <th>Действия</th>
                     </tr>
@@ -79,6 +92,13 @@ usort($items, function($a, $b) {
                             <?php else: ?>
                                 <td><?= e($item['projectSlug'] ?? '—') ?></td>
                             <?php endif; ?>
+                            <td style="text-align: center;">
+                                <?php if (($item['featured'] ?? 'false') === 'true'): ?>
+                                    <span style="color: #28a745; font-size: 18px;">✓</span>
+                                <?php else: ?>
+                                    <span style="color: #ccc;">—</span>
+                                <?php endif; ?>
+                            </td>
                             <td><?= e($item['publishedAt'] ?? '—') ?></td>
                             <td class="actions">
                                 <a href="?action=edit&type=<?= e($type) ?>&file=<?= urlencode($item['filename']) ?>" class="btn btn-small btn-primary">Редактировать</a>

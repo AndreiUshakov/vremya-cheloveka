@@ -9,11 +9,11 @@ define('SITE_NAME', 'Время Человека');
 define('SITE_URL', 'https://vremyacheloveka.ru');
 define('SITE_DESCRIPTION', 'Благотворительный фонд помощи людям');
 
-// Корневая директория сайта (php-site является корнем на хостинге)
+// Корневая директория сайта
 define('ROOT_DIR', __DIR__);
 
-// Пути к директориям контента (относительно корня сайта)
-define('CONTENT_DIR', ROOT_DIR . '/../src/content');
+// Пути к директориям контента (теперь в /content)
+define('CONTENT_DIR', ROOT_DIR . '/content');
 define('PROJECTS_DIR', CONTENT_DIR . '/projects');
 define('NEWS_DIR', CONTENT_DIR . '/news');
 define('REPORTS_DIR', CONTENT_DIR . '/reports');

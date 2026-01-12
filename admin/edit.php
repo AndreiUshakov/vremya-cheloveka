@@ -69,78 +69,10 @@ if ($isEdit && file_exists($dir . '/' . $file)) {
     }
 }
 
-// Обработка формы
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Получаем данные из формы
-    foreach ($_POST as $key => $value) {
-        if (isset($data[$key])) {
-            $data[$key] = $value;
-        }
-    }
-    
-    // Регионы
-    if (isset($_POST['regions']) && is_array($_POST['regions'])) {
-        $data['regions'] = $_POST['regions'];
-    }
-    
-    // Используем slug из формы или создаём из заголовка
-    $slug = !empty($data['slug']) ? $data['slug'] : createSlug($data['title']);
-    $filename = $slug . '.md';
-    
-    // Формируем frontmatter
-    $frontmatter = "---\n";
-    
-    if ($type === 'projects') {
-        $frontmatter .= "title: \"" . addslashes($data['title']) . "\"\n";
-        $frontmatter .= "slug: \"" . $slug . "\"\n";
-        $frontmatter .= "shortDescription: \"" . addslashes($data['shortDescription']) . "\"\n";
-        $frontmatter .= "category: \"" . $data['category'] . "\"\n";
-        $frontmatter .= "status: \"" . $data['status'] . "\"\n";
-        $frontmatter .= "featured: " . (isset($_POST['featured']) ? 'true' : 'false') . "\n";
-        
-        if (!empty($data['targetAmount'])) {
-            $frontmatter .= "targetAmount: " . intval($data['targetAmount']) . "\n";
-        }
-        
-        $frontmatter .= "collectedAmount: " . intval($data['collectedAmount']) . "\n";
-        $frontmatter .= "beneficiariesCount: " . intval($data['beneficiariesCount']) . "\n";
-        
-        if (!empty($data['regions'])) {
-            $frontmatter .= "regions:\n";
-            foreach ($data['regions'] as $region) {
-                $frontmatter .= "  - \"" . addslashes($region) . "\"\n";
-            }
-        }
-        
-        $frontmatter .= "imageUrl: \"" . addslashes($data['imageUrl']) . "\"\n";
-    } else {
-        $frontmatter .= "title: \"" . addslashes($data['title']) . "\"\n";
-        $frontmatter .= "excerpt: \"" . addslashes($data['excerpt']) . "\"\n";
-        
-        if (!empty($data['projectSlug'])) {
-            $frontmatter .= "projectSlug: \"" . addslashes($data['projectSlug']) . "\"\n";
-        }
-        
-        if (!empty($data['imageUrl'])) {
-            $frontmatter .= "imageUrl: \"" . addslashes($data['imageUrl']) . "\"\n";
-        }
-    }
-    
-    $frontmatter .= "publishedAt: " . $data['publishedAt'] . "\n";
-    $frontmatter .= "---\n\n";
-    
-    // Полное содержимое файла
-    $fileContent = $frontmatter . $data['content'];
-    
-    // Сохраняем файл
-    $filepath = $dir . '/' . $filename;
-    
-    if (file_put_contents($filepath, $fileContent)) {
-        header('Location: ?action=list&type=' . $type . '&success=1');
-        exit;
-    } else {
-        $error = 'Ошибка сохранения файла';
-    }
+// Обработка POST теперь в index.php, здесь только проверка на ошибки из сессии
+$error = $_SESSION['error'] ?? null;
+if ($error) {
+    unset($_SESSION['error']);
 }
 ?>
 
@@ -154,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="alert alert-error"><?= e($error) ?></div>
     <?php endif; ?>
 
-    <form method="POST" class="edit-form">
+    <form method="POST" enctype="multipart/form-data" class="edit-form">
         <div class="form-group">
             <label for="title">Название *</label>
             <input type="text" id="title" name="title" value="<?= e($data['title']) ?>" required>
@@ -163,8 +95,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($type === 'projects'): ?>
         <div class="form-group">
             <label for="slug">URL (slug) *</label>
-            <input type="text" id="slug" name="slug" value="<?= e($data['slug']) ?>" required pattern="[a-z0-9\-]+" title="Только строчные латинские буквы, цифры и дефисы">
-            <small>Используется в URL страницы. Например: trezvaya-rossiya</small>
+            <input type="text" id="slug" name="slug" value="<?= e($data['slug']) ?>"
+                   data-current-file="<?= $isEdit ? e($file) : '' ?>"
+                   required pattern="[a-z0-9\-]+"
+                   title="Только строчные латинские буквы, цифры и дефисы"
+                   autocomplete="off">
+            <small>Генерируется автоматически из названия. Можно изменить вручную.</small>
         </div>
         <?php endif; ?>
 
@@ -229,9 +165,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="form-group">
-                <label for="imageUrl">URL изображения *</label>
-                <input type="url" id="imageUrl" name="imageUrl" value="<?= e($data['imageUrl']) ?>" required>
-                <small>Например: https://images.unsplash.com/photo-xxx</small>
+                <label>Изображение проекта</label>
+                <div class="image-upload-container">
+                    <div class="image-preview">
+                        <?php
+                        $currentImage = !empty($data['imageUrl']) ? $data['imageUrl'] : '/static/img/nophoto.svg';
+                        ?>
+                        <img id="image-preview" src="<?= e($currentImage) ?>" alt="Превью изображения">
+                    </div>
+                    <div class="image-controls">
+                        <input type="hidden" id="imageUrl" name="imageUrl" value="<?= e($data['imageUrl']) ?>">
+                        <input type="hidden" id="deleteImage" name="deleteImage" value="0">
+                        
+                        <label for="imageFile" class="btn btn-primary btn-small">
+                            <i class="fas fa-upload"></i> Загрузить изображение
+                        </label>
+                        <input type="file" id="imageFile" name="imageFile" accept="image/*" style="display: none;">
+                        
+                        <?php if (!empty($data['imageUrl'])): ?>
+                        <button type="button" id="deleteImageBtn" class="btn btn-danger btn-small">
+                            <i class="fas fa-trash"></i> Удалить изображение
+                        </button>
+                        <?php endif; ?>
+                        
+                        <small class="image-info">
+                            Поддерживаемые форматы: JPG, PNG, GIF, WebP. Максимальный размер: 5 МБ
+                        </small>
+                    </div>
+                </div>
             </div>
             
             <div class="form-group">
@@ -248,14 +209,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="form-group">
-                <label for="projectSlug">Slug проекта (опционально)</label>
-                <input type="text" id="projectSlug" name="projectSlug" value="<?= e($data['projectSlug']) ?>">
-                <small>Например: trezvaya-rossiya</small>
+                <label for="projectSlug">Связанный проект (опционально)</label>
+                <select id="projectSlug" name="projectSlug">
+                    <option value="">-- Не выбран --</option>
+                    <?php
+                    // Получаем список всех проектов
+                    $projectFiles = glob(PROJECTS_DIR . '/*.md');
+                    $projects = [];
+                    
+                    foreach ($projectFiles as $projectFile) {
+                        $content = file_get_contents($projectFile);
+                        if (preg_match('/^---\s*\n(.*?)\n---\s*\n/s', $content, $matches)) {
+                            $frontmatter = $matches[1];
+                            $projectData = ['title' => '', 'slug' => ''];
+                            
+                            // Парсим title и slug
+                            if (preg_match('/^title:\s*"?([^"\n]+)"?$/m', $frontmatter, $m)) {
+                                $projectData['title'] = trim($m[1], '"');
+                            }
+                            if (preg_match('/^slug:\s*"?([^"\n]+)"?$/m', $frontmatter, $m)) {
+                                $projectData['slug'] = trim($m[1], '"');
+                            }
+                            
+                            if (!empty($projectData['slug']) && !empty($projectData['title'])) {
+                                $projects[] = $projectData;
+                            }
+                        }
+                    }
+                    
+                    // Сортируем проекты по названию
+                    usort($projects, function($a, $b) {
+                        return strcmp($a['title'], $b['title']);
+                    });
+                    
+                    // Выводим опции
+                    foreach ($projects as $project): ?>
+                        <option value="<?= e($project['slug']) ?>" <?= $data['projectSlug'] === $project['slug'] ? 'selected' : '' ?>>
+                            <?= e($project['title']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <small>Выберите проект, к которому относится эта новость</small>
             </div>
 
             <div class="form-group">
-                <label for="imageUrl">URL изображения (опционально)</label>
-                <input type="url" id="imageUrl" name="imageUrl" value="<?= e($data['imageUrl']) ?>">
+                <label>Изображение новости</label>
+                <div class="image-upload-container">
+                    <div class="image-preview">
+                        <?php
+                        $currentImage = !empty($data['imageUrl']) ? $data['imageUrl'] : '/static/img/nophoto.svg';
+                        ?>
+                        <img id="image-preview" src="<?= e($currentImage) ?>" alt="Превью изображения">
+                    </div>
+                    <div class="image-controls">
+                        <input type="hidden" id="imageUrl" name="imageUrl" value="<?= e($data['imageUrl']) ?>">
+                        <input type="hidden" id="deleteImage" name="deleteImage" value="0">
+                        
+                        <label for="imageFile" class="btn btn-primary btn-small">
+                            <i class="fas fa-upload"></i> Загрузить изображение
+                        </label>
+                        <input type="file" id="imageFile" name="imageFile" accept="image/*" style="display: none;">
+                        
+                        <?php if (!empty($data['imageUrl'])): ?>
+                        <button type="button" id="deleteImageBtn" class="btn btn-danger btn-small">
+                            <i class="fas fa-trash"></i> Удалить изображение
+                        </button>
+                        <?php endif; ?>
+                        
+                        <small class="image-info">
+                            Поддерживаемые форматы: JPG, PNG, GIF, WebP. Максимальный размер: 5 МБ
+                        </small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="featured" value="1" <?= !empty($data['featured']) && $data['featured'] !== 'false' ? 'checked' : '' ?>>
+                    Показывать на главной странице (избранная новость)
+                </label>
             </div>
         <?php endif; ?>
 
