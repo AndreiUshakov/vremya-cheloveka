@@ -1,7 +1,7 @@
 /* Цветовая палитра из видео - Вариант 2 (Светлая тема) ☀️ */
 :root {
   --primary-red: #c95240;        /* rosy-copper - основной акцент */
-  --deep-burgundy: #511809;      /* espresso - тёмные акценты */
+  --deep-burgundy: #fde9a9; /* #511809;       espresso - тёмные акценты */
   --cream-bg: #fcfada;           /* light-yellow - светлый фон */
   --dark-green: #534a1b;         /* olive-bark - акценты */
   --golden-brown: #f99f37;       /* carrot-orange - золотые элементы */
@@ -141,7 +141,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+ /*  align-items: center; */
   justify-content: center;
   overflow: hidden;
   padding: 0;
@@ -171,6 +171,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 }
 
 .hero-content-new {
+  margin-top: 18%;
   position: relative;
   z-index: 10;
   text-align: center;
@@ -183,7 +184,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
   color: white;
   margin-bottom: 1rem;
   line-height: 1.1;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -444,7 +445,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 .project-image {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .project-content {
@@ -630,7 +631,7 @@ h4 { font-size: 1.5rem; font-weight: 600; }
 
 .footer-bottom {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(245, 230, 211, 0.2);
   font-size: 0.9rem;
 }
@@ -685,16 +686,17 @@ h4 { font-size: 1.5rem; font-weight: 600; }
   }
   
   .hero-content-new {
+    margin-top: 45%;
     padding: 2rem 1rem;
   }
   
   .hero-content-new h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 0.05em;
   }
   
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 2rem;
   }
   

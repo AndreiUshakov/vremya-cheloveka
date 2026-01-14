@@ -7,7 +7,7 @@
 // Базовые настройки
 define('SITE_NAME', 'Время Человека');
 define('SITE_URL', 'https://vremyacheloveka.ru');
-define('SITE_DESCRIPTION', 'Благотворительный фонд помощи людям');
+define('SITE_DESCRIPTION', 'Благотворительный фонд');
 
 // Корневая директория сайта
 define('ROOT_DIR', __DIR__);
@@ -117,7 +117,10 @@ function formatDate($date, $format = 'd.m.Y') {
  * Функция для форматирования суммы
  */
 function formatAmount($amount) {
-    return number_format($amount, 0, ',', ' ') . ' ₽';
+    if (is_array($amount)) return '0';
+    if ($amount === null) return '0';
+    if ($amount == 0) return '0';
+    return number_format($amount, 0, ',', ' ');
 }
 
 /**

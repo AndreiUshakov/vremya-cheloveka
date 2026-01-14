@@ -29,15 +29,10 @@ RewriteRule ^news/?$ news.php [L,QSA]
 # Отдельная новость: /news/itogi-2024-goda
 RewriteRule ^news/([a-zA-Z0-9\-]+)/?$ news-single.php?slug=$1 [L,QSA]
 
-# ====================================================================
-# ЧПУ для отчётов: /reports/slug
-# ====================================================================
 
-# Список отчётов: /reports или /reports/
-RewriteRule ^reports/?$ reports.php [L,QSA]
 
-# Отдельный отчёт: /reports/financial-2024
-RewriteRule ^reports/([a-zA-Z0-9\-]+)/?$ report.php?slug=$1 [L,QSA]
+
+
 
 # ====================================================================
 # Другие страницы
@@ -48,6 +43,9 @@ RewriteRule ^about/?$ about.php [L]
 
 # Контакты
 RewriteRule ^contacts/?$ contacts.php [L]
+
+#Документы
+RewriteRule ^documents/?$ documents.php [L]
 
 # Партнёры
 RewriteRule ^partners/?$ partners.php [L]

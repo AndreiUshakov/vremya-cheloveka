@@ -8,9 +8,7 @@ featured: true
 targetAmount: 1500000
 collectedAmount: 420000
 beneficiariesCount: 2500
-regions:
-  - "Все регионы России"
-imageUrl: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800"
+imageUrl: "/static/img/otvetstvennoe-ottsovstvo-1768289460.png"
 publishedAt: 2024-03-01
 ---
 

@@ -46,8 +46,8 @@ function renderLayout($content, $meta = []) {
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     
     <!-- Стили -->
-    <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="/static/glass-theme.css">
+    <link rel="stylesheet" href="/static/styles.css?v=<?= time()  ?>">
+    <link rel="stylesheet" href="/static/glass-theme.css?v=<?= time()  ?>">
     
     <!-- Дополнительные стили для конкретных страниц -->
     <?php if (isset($meta['additional_css'])): ?>
@@ -67,7 +67,7 @@ function renderLayout($content, $meta = []) {
                 <div class="footer-section">
                     <h4>О нас</h4>
                     <p>
-                        Благотворительный фонд «Время Человека» — поддержка моральных и трезвых инициатив в России.
+                        Благотворительный фонд «Время Человека» — поддержка инициатив в области народосбережения и просвещения.
                     </p>
                 </div>
                 <div class="footer-section">
@@ -75,8 +75,9 @@ function renderLayout($content, $meta = []) {
                     <ul class="footer-links">
                         <li><a href="/">Главная</a></li>
                         <li><a href="/projects">Проекты</a></li>
+                        <li><a href="/news">Новости</a></li>
                         <li><a href="/about">О фонде</a></li>
-                        <li><a href="/reports">Отчёты</a></li>
+                        <li><a href="/documents">Документы</a></li>
                         <li><a href="/contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -98,33 +99,38 @@ function renderLayout($content, $meta = []) {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?= date('Y') ?> Благотворительный фонд «Время Человека». Под эгидой АНО «Институт развития общества».</p>
+                <p>&copy; <?= date('Y') ?> Благотворительный фонд «Время Человека». Под эгидой АНО «Институт Развития Общества».</p>
             </div>
         </div>
     </footer>
     
     <!-- Стеклянная навигация -->
     <nav class="glass-bottom-nav <?= ($_SERVER['REQUEST_URI'] === '/' || strpos($_SERVER['REQUEST_URI'], '/index.php') !== false) ? 'nav-bottom' : 'nav-top' ?>">
-        <a href="/" class="glass-nav-item glass-nav-logo">
-            <img src="/static/img/logoWhiteTranPic.png" alt="<?= e(SITE_NAME) ?>" style="height: 40px;">
-        </a>
         <a href="/" class="glass-nav-item <?= ($_SERVER['REQUEST_URI'] === '/' || strpos($_SERVER['REQUEST_URI'], '/index.php') !== false) ? 'active' : '' ?>">
-            <i class="fas fa-home"></i>
+            <img src="/static/img/logoWhiteTranPic.png" alt="<?= e(SITE_NAME) ?>" style="height: 40px;">
+            <span>Главная</span>
+        </a>
+        <a href="/about" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/about') !== false ? 'active' : '' ?>">
+            <i class="fas fa-circle-info"></i>
             <span>О фонде</span>
         </a>
         <a href="/projects" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/projects') !== false ? 'active' : '' ?>">
             <i class="fas fa-folder-open"></i>
-            <span>Программы</span>
+            <span>Проекты</span>
         </a>
-        <a href="/reports" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/reports') !== false ? 'active' : '' ?>">
+        <a href="/news" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/news') !== false ? 'active' : '' ?>">
+            <i class="fas fa-newspaper"></i>
+            <span>Новости</span>
+        </a>
+        <a href="/documents" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/documents') !== false ? 'active' : '' ?>">
             <i class="fas fa-file-invoice"></i>
-            <span>Отчёты</span>
+            <span>Документы</span>
         </a>
         <a href="/contacts" class="glass-nav-item <?= strpos($_SERVER['REQUEST_URI'], '/contacts') !== false ? 'active' : '' ?>">
             <i class="fas fa-phone"></i>
             <span>Контакты</span>
         </a>
-        <a href="#donate" class="glass-nav-item glass-nav-cta">
+        <a href="/#donate" class="glass-nav-item glass-nav-cta">
             <i class="fas fa-hand-holding-heart"></i>
             <span>Сделать взнос</span>
         </a>

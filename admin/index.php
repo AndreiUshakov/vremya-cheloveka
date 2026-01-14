@@ -228,6 +228,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Админ-панель - Время Человека</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <?php if ($action === 'edit' || $action === 'create'): ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <?php endif; ?>
 </head>
 <body>
     <div class="admin-container">
@@ -273,6 +276,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($action === 'edit' || $action === 'create'): ?>
     <script src="slug-generator.js"></script>
     <script src="image-upload.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script>
+        // Инициализация EasyMDE редактора для поля контента
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentTextarea = document.getElementById('content');
+            if (contentTextarea) {
+                const easyMDE = new EasyMDE({
+                    element: contentTextarea,
+                    spellChecker: false, // отключаем проверку орфографии (для русского)
+                    placeholder: "Введите текст в формате Markdown...",
+                    autofocus: false,
+                    toolbar: [
+                        "bold", "italic", "heading", "|",
+                        "quote", "unordered-list", "ordered-list", "|",
+                        "link", "image", "|",
+                        "preview", "side-by-side", "fullscreen", "|",
+                        {
+                            name: "guide",
+                            action: "https://www.markdownguide.org/basic-syntax/",
+                            className: "fa fa-question-circle",
+                            title: "Справка по Markdown",
+                        }
+                    ],
+                    status: ["lines", "words", "cursor"],
+                    renderingConfig: {
+                        singleLineBreaks: false,
+                    },
+                    minHeight: "400px",
+                });
+            }
+        });
+    </script>
     <?php endif; ?>
 </body>
 </html>

@@ -171,8 +171,17 @@ try {
     <!-- Контент по центру -->
     <div class="container">
         <div class="hero-content-new fade-in-up">
+            <!-- Логотип фонда -->
+            <div style="display: flex; justify-content: center;">
+                <img
+                    src="/static/img/logoWhiteTranPic.png"
+                    alt="Логотип фонда Время Человека"
+                    style="max-width: 200px; width: 100%; height: auto; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));"
+                />
+            </div>
             <h1>ВРЕМЯ ЧЕЛОВЕКА</h1>
             <p class="hero-subtitle">— Благотворительный фонд —</p>
+            
         </div>
     </div>
 </section>
@@ -181,23 +190,208 @@ try {
 <section class="glass-section">
     <div class="container">
         <div class="glass-mission-card glass-animate">
-            <h2 class="glass-text-center glass-mb-2">
-                <i class="fas fa-info-circle glass-text-gold"></i>
-                О фонде
-            </h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    Благотворительный фонд «Время Человека» действует под эгидой АНО «Институт развития общества».
-                    Мы поддерживаем проекты, направленные на укрепление моральных ценностей,
-                    продвижение трезвого образа жизни и ответственного отношения к семье.
-                </p>
-                <p style="font-size: 1.1rem;">
-                    <strong>Наши ценности:</strong> Нравственность • Трезвость • Ответственность • Прозрачность • Забота о будущем детей
-                </p>
-                <a href="/about" class="glass-btn glass-btn-outline glass-btn-large" style="margin-top: 1.5rem;">
-                    <i class="fas fa-arrow-right"></i>
-                    Узнать больше
+            
+            <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
+                <!-- Логотип слева -->
+                <div style="flex: 0 0 auto;">
+                    <img src="/static/img/brand.png" alt="Логотип фонда Время Человека" style="max-width: 250px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);" />
+                </div>
+                
+                <!-- Текст и кнопка справа -->
+                <div style="flex: 1 1 400px;">
+                    <h2 class="glass-mb-2">
+                        О фонде
+                    </h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--glass-text-secondary); line-height: 1.8;">
+                        Благотворительный фонд «Время Человека» — некоммерческая организация, созданная для поддержки инициатив в области народосбережения и просвещения. Мы объединяем благотворителей, волонтеров и специалистов для реализации социально значимых проектов в сфере образования, культуры, здоровья и семейных ценностей.
+                    </p>
+                    <a href="/about" class="glass-btn glass-btn-primary glass-btn-large" style="margin-top: 1.5rem;">
+                        <i class="fas fa-arrow-right"></i>
+                        Узнать больше
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Наши ценности -->
+<section class="glass-section">
+    <div class="container">
+        <h2 class="glass-section-title glass-animate">
+            Наши ценности
+        </h2>
+        
+        <div class="glass-values-grid">
+            <!-- Ценность 1: Образование -->
+            <div class="glass-value-card glass-animate-delay-1">
+                <div class="glass-value-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="glass-value-content">
+                    <h4>Образование и культура</h4>
+                    <p>Каждый человек заслуживает доступа к качественному образованию и культурному развитию</p>
+                </div>
+            </div>
+            
+            <!-- Ценность 2: Семья -->
+            <div class="glass-value-card glass-animate-delay-2">
+                <div class="glass-value-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="glass-value-content">
+                    <h4>Семейные ценности</h4>
+                    <p>Семья — основа общества, требующая поддержки и защиты</p>
+                </div>
+            </div>
+            
+            <!-- Ценность 3: Здоровье -->
+            <div class="glass-value-card glass-animate-delay-1">
+                <div class="glass-value-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="glass-value-content">
+                    <h4>Здоровый образ жизни</h4>
+                    <p>Здоровый образ жизни и просвещение — путь к благополучию нации</p>
+                </div>
+            </div>
+            
+            <!-- Ценность 4: Волонтерство -->
+            <div class="glass-value-card glass-animate-delay-2">
+                <div class="glass-value-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="glass-value-content">
+                    <h4>Добровольчество</h4>
+                    <p>Волонтерство и добровольчество — движущая сила позитивных перемен</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Призыв к действию для инвесторов -->
+        <div class="glass-card-glow glass-animate" style="max-width: 900px; margin: 3rem auto 0; text-align: center;">
+            <div class="glass-icon" style="margin: 0 auto 1.5rem;">
+                <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <h3 style="color: var(--glass-text-primary); margin-bottom: 1rem; font-size: 1.8rem; font-weight: 600;">Станьте меценатом фонда</h3>
+            <p style="color: var(--glass-text-secondary); margin-bottom: 2rem; font-size: 1.15rem; line-height: 1.8; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Если Вы разделяете наши ценности, поддержите проекты фонда или сделайте перевод на уставную деятельность
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/projects" class="glass-btn glass-btn-primary glass-btn-large">
+                    <i class="fas fa-folder-open"></i>
+                    Поддержать проект
                 </a>
+                <a href="#donate" class="glass-btn glass-btn-outline glass-btn-large">
+                    <i class="fas fa-donate"></i>
+                    Поддержать фонд
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Направления деятельности -->
+<section class="glass-section">
+    <div class="container">
+        <h2 class="glass-section-title glass-animate">            
+            Направления деятельности
+        </h2>
+        
+        <div class="glass-grid glass-grid-activities">
+            <!-- 1. Образование и развитие -->
+            <div class="glass-activity-card glass-animate-delay-1">
+                <div class="activity-header">
+                    <div class="activity-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Образование и развитие</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>Разработка образовательных и развивающих программ для детей и молодежи</li>
+                    <li>Техническое оснащение образовательных организаций для повышения эффективности преподавания</li>
+                    <li>Создание высококачественных методических материалов для развивающих занятий</li>
+                </ul>
+            </div>
+
+            <!-- 2. Наука и исследования -->
+            <div class="glass-activity-card glass-animate-delay-2">
+                <div class="activity-header">
+                    <div class="activity-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Наука и исследования</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>Проведение научно-исследовательских работ по влиянию окружающей среды и информационного пространства на развитие детей</li>
+                    <li>Популяризация научных исследований в области детского развития</li>
+                    <li>Содействие развитию научного потенциала региона</li>
+                </ul>
+            </div>
+
+            <!-- 3. Культура и искусство -->
+            <div class="glass-activity-card glass-animate-delay-3">
+                <div class="activity-header">
+                    <div class="activity-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Культура и искусство</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>Поддержка культурных и художественных инициатив</li>
+                    <li>Производство высококачественной информационной, видео и аудиопродукции</li>
+                    <li>Издательская деятельность в соответствии с целями фонда</li>
+                    <li>Организация культурных и массовых мероприятий</li>
+                </ul>
+            </div>
+
+            <!-- 4. Семья и здоровье -->
+            <div class="glass-activity-card glass-animate-delay-1">
+                <div class="activity-header">
+                    <div class="activity-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Семья и здоровье</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>Укрепление и защита семьи, популяризация традиционных семейных ценностей</li>
+                    <li>Поддержка многодетности и материнства</li>
+                    <li>Пропаганда здорового образа жизни</li>
+                    <li>Улучшение морально-психологического состояния граждан</li>
+                </ul>
+            </div>
+
+            <!-- 5. Волонтерство и гражданское общество -->
+            <div class="glass-activity-card glass-animate-delay-2">
+                <div class="activity-header">
+                    <div class="activity-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Волонтерство и гражданское общество</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>Содействие добровольческой деятельности</li>
+                    <li>Поддержка молодежных инициатив и детских организаций</li>
+                    <li>Патриотическое и духовно-нравственное воспитание</li>
+                    <li>Правовое просвещение населения</li>
+                </ul>
+            </div>
+
+            <!-- 6. Призыв к действию -->
+            <div class="glass-activity-card glass-activity-card-cta glass-animate-delay-3">
+                <div class="activity-header">
+                    <div class="activity-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Есть идея проекта?</h3>
+                </div>
+                <div class="cta-content">
+                    <p>Заинтересованы в сотрудничестве или хотите предложить свой проект?</p>
+                    <a href="/contacts" class="glass-btn glass-btn-primary glass-btn-large">
+                        <i class="fas fa-arrow-right"></i>
+                        Связаться с нами
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -207,15 +401,17 @@ try {
 <?php if (!empty($featuredProjects)): ?>
 <section class="glass-section">
     <div class="container">
-        <h2 class="glass-section-title glass-animate">
-            <i class="fas fa-folder-open"></i>
+        <h2 class="glass-section-title glass-animate">            
             Наши проекты
         </h2>
         <div class="glass-grid">
             <?php foreach ($featuredProjects as $project): ?>
             <?php
-                $progress = isset($project['targetAmount']) && $project['targetAmount'] > 0
-                    ? number_format(($project['collectedAmount'] ?? 0) / $project['targetAmount'] * 100, 1)
+                // Безопасное вычисление прогресса с проверкой всех значений
+                $collectedAmount = isset($project['collectedAmount']) ? (float)$project['collectedAmount'] : 0;
+                $targetAmount = isset($project['targetAmount']) ? (float)$project['targetAmount'] : 0;
+                $progress = ($targetAmount > 0)
+                    ? number_format(($collectedAmount / $targetAmount) * 100, 1)
                     : 0;
             ?>
             <div class="glass-program-card glass-animate-delay-<?= ($loop_index = array_search($project, $featuredProjects) + 1) > 3 ? 3 : $loop_index ?>">
@@ -223,17 +419,21 @@ try {
                 <img src="<?= e($project['imageUrl']) ?>" alt="<?= e($project['title']) ?>" class="project-image" style="border-radius: 12px; margin-bottom: 1rem;" />
                 <?php endif; ?>
                 <div>
-                    <div class="glass-icon">
+                    <!-- <div class="glass-icon">
                         <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <h3 style="color: var(--glass-text-primary); font-size: 1.4rem; margin-bottom: 0.75rem;"><?= e($project['title']) ?></h3>
+                    </div> -->
+                    <span class="glass-project-category">
+                            <i class="fas fa-tag"></i>
+                            <?= e(PROJECT_CATEGORIES[$project['category']] ?? $project['category']) ?>
+                        </span>
+                    <h3 style="color: var(--glass-text-primary); font-size: 1.4rem; margin-bottom: 0.75rem; margin-top: 0.5rem;"><?= e($project['title']) ?></h3>
                     <p style="color: var(--glass-text-secondary); margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.6;"><?= e($project['shortDescription'] ?? '') ?></p>
                     
                     <?php if (isset($project['targetAmount']) && $project['targetAmount'] > 0): ?>
                     <div class="project-stats">
                         <div class="stat-item">
                             <span class="stat-label">Собрано</span>
-                            <span class="stat-value"><?= formatAmount($project['collectedAmount'] ?? 0) ?> ₽</span>
+                            <span class="stat-value"><?= formatAmount($collectedAmount) ?> ₽</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Цель</span>
@@ -261,7 +461,7 @@ try {
         </div>
         <div class="glass-text-center glass-mt-2">
             <a href="/projects" class="glass-btn glass-btn-primary glass-btn-large">
-                <i class="fas fa-th-large"></i>
+                
                 Все проекты
             </a>
         </div>
@@ -273,7 +473,7 @@ try {
 <section class="glass-section">
     <div class="container">
         <h2 class="glass-section-title glass-animate">
-            <i class="fas fa-shield-alt"></i>
+           
             Почему нам можно доверять
         </h2>
         <div class="glass-grid glass-grid-4">
@@ -289,7 +489,7 @@ try {
                     <i class="fas fa-users-cog"></i>
                 </div>
                 <h4 style="color: var(--glass-text-primary); font-weight: 600; margin-bottom: 0.5rem;">Общественный контроль</h4>
-                <p style="color: var(--glass-text-secondary); line-height: 1.6;">Работаем под надзором АНО "Институт развития общества"</p>
+                <p style="color: var(--glass-text-secondary); line-height: 1.6;">Работаем под надзором АНО "Институт Развития Общества"</p>
             </div>
             <div class="glass-card glass-animate-delay-3">
                 <div class="glass-icon">
@@ -314,7 +514,7 @@ try {
 <section class="glass-section">
     <div class="container">
         <h2 class="glass-section-title glass-animate">
-            <i class="fas fa-newspaper"></i>
+            
             Новости и обновления
         </h2>
         <div class="glass-grid glass-grid-3">
@@ -338,6 +538,12 @@ try {
             </div>
             <?php endforeach; ?>
         </div>
+        <div class="glass-text-center glass-mt-2">
+            <a href="/news" class="glass-btn glass-btn-primary glass-btn-large">
+                <i class="fas fa-newspaper"></i>
+                Все новости
+            </a>
+        </div>
     </div>
 </section>
 <?php endif; ?>
@@ -346,7 +552,7 @@ try {
 <section class="glass-section" id="donate">
     <div class="container">
         <h2 class="glass-section-title glass-animate">
-            <i class="fas fa-hand-holding-heart"></i>
+            
             Поддержать фонд
         </h2>
         <div class="glass-card-glow glass-animate" style="max-width: 800px; margin: 0 auto; text-align: center;">

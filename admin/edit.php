@@ -297,9 +297,9 @@ if ($error) {
         </div>
 
         <div class="form-group">
-            <label for="content">Содержание (Markdown) *</label>
+            <label for="content">Содержание *</label>
             <textarea id="content" name="content" rows="15" required><?= e($data['content']) ?></textarea>
-            <small>Поддерживается Markdown разметка</small>
+            <small>Используйте панель инструментов для форматирования текста. Поддерживается Markdown разметка.</small>
         </div>
 
         <div class="form-actions">

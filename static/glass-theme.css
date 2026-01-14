@@ -381,7 +381,7 @@ body::before {
 }
 
 .glass-section-title {
-  text-align: center;
+  text-align: left;
   color: var(--glass-text-primary);
   margin-bottom: 3rem;
   font-size: 2.5rem;
@@ -412,6 +412,571 @@ body::before {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.glass-grid-activities {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* ============================================
+   ACTIVITY CARDS (Направления деятельности)
+   ============================================ */
+
+.glass-activity-card {
+  background: rgba(30, 39, 66, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.glass-activity-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--glass-gold) 0%, var(--glass-amber) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-activity-card:hover {
+  background: rgba(30, 39, 66, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.glass-activity-card:hover::before {
+  opacity: 1;
+}
+
+/* Заголовок с иконкой в одной строке */
+.glass-activity-card .activity-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.glass-activity-card .activity-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0e27;
+  font-size: 1.75rem;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+}
+
+.glass-activity-card:hover .activity-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+}
+
+.glass-activity-card h3 {
+  color: var(--glass-text-primary);
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 600;
+  flex: 1;
+}
+
+.glass-activity-card .activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.glass-activity-card .activity-list li {
+  color: var(--glass-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.glass-activity-card .activity-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--glass-gold);
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.glass-activity-card:hover .activity-list li::before {
+  transform: translateX(3px);
+}
+
+/* Специальная карточка призыва к действию */
+.glass-activity-card-cta {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.2) 0%,
+    rgba(74, 144, 226, 0.15) 100%
+  );
+  border-color: rgba(212, 175, 55, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem;
+}
+
+.glass-activity-card-cta:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.3) 0%,
+    rgba(74, 144, 226, 0.2) 100%
+  );
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.glass-activity-card-cta .activity-header {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.glass-activity-card-cta .cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.glass-activity-card-cta .cta-content p {
+  color: var(--glass-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   VALUES CARDS (Horizontal Layout)
+   ============================================ */
+
+.glass-values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.glass-value-card {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 39, 66, 0.7) 0%,
+    rgba(10, 14, 39, 0.6) 100%
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Градиентная полоса слева */
+.glass-value-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--glass-gold) 0%, var(--glass-amber) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-value-card:hover::before {
+  opacity: 1;
+}
+
+.glass-value-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 39, 66, 0.85) 0%,
+    rgba(10, 14, 39, 0.75) 100%
+  );
+  transform: translateX(8px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow:
+    -4px 0 20px rgba(212, 175, 55, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.glass-value-icon {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0e27;
+  font-size: 2rem;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.glass-value-icon::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--glass-gold), var(--glass-amber));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-value-card:hover .glass-value-icon {
+  transform: scale(1.05) rotate(-5deg);
+  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
+}
+
+.glass-value-card:hover .glass-value-icon::after {
+  opacity: 0.3;
+}
+
+.glass-value-content {
+  flex: 1;
+}
+
+.glass-value-content h4 {
+  color: var(--glass-text-primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.glass-value-card:hover .glass-value-content h4 {
+  color: var(--glass-gold);
+}
+
+.glass-value-content p {
+  color: var(--glass-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Responsive для ценностей */
+@media (max-width: 768px) {
+  .glass-values-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .glass-value-card {
+    padding: 1.5rem;
+  }
+  
+  .glass-value-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    font-size: 1.75rem;
+  }
+  
+  .glass-value-content h4 {
+    font-size: 1.15rem;
+  }
+  
+  .glass-value-content p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   PROJECT FILTERS
+   ============================================ */
+
+.glass-filters-card {
+  background: rgba(30, 39, 66, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-filters-title {
+  color: var(--glass-text-primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.glass-filters-title i {
+  color: var(--glass-gold);
+}
+
+.glass-filters-grid {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.glass-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color: var(--glass-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.glass-filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--glass-gold);
+  color: var(--glass-text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.glass-filter-btn.active {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(255, 179, 64, 0.3) 100%);
+  border-color: var(--glass-gold);
+  color: var(--glass-gold);
+  box-shadow:
+    0 4px 15px rgba(212, 175, 55, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-filter-btn.active i {
+  animation: goldPulse 2s ease-in-out infinite;
+}
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+
+.glass-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.glass-project-card {
+  background: rgba(30, 39, 66, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.glass-project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--glass-gold) 0%, var(--glass-amber) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-project-card:hover {
+  background: rgba(30, 39, 66, 0.8);
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(212, 175, 55, 0.2);
+}
+
+.glass-project-card:hover::before {
+  opacity: 1;
+}
+
+.glass-project-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: rgba(10, 14, 39, 0.5);
+}
+
+.glass-project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.glass-project-card:hover .glass-project-image {
+  transform: scale(1.05);
+}
+
+.glass-project-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.glass-project-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(255, 179, 64, 0.2) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  color: var(--glass-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+.glass-project-category i {
+  font-size: 0.75rem;
+}
+
+.glass-project-title {
+  color: var(--glass-text-primary);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.glass-project-card:hover .glass-project-title {
+  color: var(--glass-gold);
+}
+
+.glass-project-description {
+  color: var(--glass-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.glass-project-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(10, 14, 39, 0.4);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.glass-stat-label {
+  color: var(--glass-text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.glass-stat-value {
+  color: var(--glass-text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.glass-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  background: rgba(10, 14, 39, 0.6);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-progress-fill {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, var(--glass-gold) 0%, var(--glass-amber) 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.glass-progress-text {
+  position: absolute;
+  right: 0.5rem;
+  color: #0a0e27;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.glass-project-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.glass-project-actions .glass-btn {
+  flex: 1;
+  justify-content: center;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+}
+
 /* ============================================
    FOOTER
    ============================================ */
@@ -426,7 +991,7 @@ body::before {
 
 /* Дополнительный отступ внизу только на главной странице (для нижнего меню) */
 body:has(.glass-bottom-nav.nav-bottom) .site-footer {
-  padding-bottom: 8rem;
+  padding-bottom: 9rem;
 }
 
 .site-footer h4 {
@@ -526,8 +1091,9 @@ body:has(.glass-bottom-nav.nav-bottom) .site-footer {
     font-size: 1.2rem;
   }
   
+  /* Скрыть текстовые метки на мобильных */
   .glass-nav-item span {
-    font-size: 0.7rem;
+    display: none;
   }
   
   .glass-section-title {
@@ -539,10 +1105,75 @@ body:has(.glass-bottom-nav.nav-bottom) .site-footer {
     gap: 1rem;
   }
   
+  .glass-grid-activities {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
   .glass-card,
   .glass-program-card,
-  .glass-mission-card {
+  .glass-mission-card,
+  .glass-activity-card {
     padding: 1.5rem;
+  }
+  
+  .glass-activity-card .activity-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .glass-activity-card .activity-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 1.5rem;
+  }
+  
+  .glass-activity-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .glass-activity-card-cta {
+    padding: 2rem;
+  }
+  
+  /* Projects responsive */
+  .glass-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .glass-filters-card {
+    padding: 1.5rem;
+  }
+  
+  .glass-filters-grid {
+    gap: 0.5rem;
+  }
+  
+  .glass-filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .glass-project-card {
+    border-radius: 20px;
+  }
+  
+  .glass-project-content {
+    padding: 1.5rem;
+  }
+  
+  .glass-project-title {
+    font-size: 1.25rem;
+  }
+  
+  .glass-project-actions {
+    flex-direction: column;
+  }
+  
+  .glass-project-actions .glass-btn {
+    width: 100%;
   }
 }
 
@@ -560,6 +1191,94 @@ body:has(.glass-bottom-nav.nav-bottom) .site-footer {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }
+  
+  /* Projects mobile responsive */
+  .glass-filters-card {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .glass-filters-title {
+    font-size: 1.1rem;
+  }
+  
+  .glass-project-image-wrapper {
+    height: 180px;
+  }
+  
+  .glass-project-content {
+    padding: 1.25rem;
+    gap: 0.75rem;
+  }
+  
+  .glass-project-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+}
+
+/* ============================================
+   PROJECT PAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Milestone completed state */
+.milestone-completed {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(30, 39, 66, 0.6) 100%
+  );
+}
+
+.milestone-completed:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+/* Project content styling */
+.glass-card .glass-text-secondary h2,
+.glass-card .glass-text-secondary h3 {
+  color: var(--glass-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.glass-card .glass-text-secondary h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.glass-card .glass-text-secondary h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.glass-card .glass-text-secondary ul,
+.glass-card .glass-text-secondary ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.glass-card .glass-text-secondary li {
+  margin-bottom: 0.75rem;
+  line-height: 1.8;
+}
+
+.glass-card .glass-text-secondary strong {
+  color: var(--glass-gold);
+  font-weight: 600;
+}
+
+.glass-card .glass-text-secondary a {
+  color: var(--glass-gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-card .glass-text-secondary a:hover {
+  border-bottom-color: var(--glass-gold);
 }
 
 /* ============================================
@@ -593,4 +1312,66 @@ body:has(.glass-bottom-nav.nav-bottom) .site-footer {
 .glass-p-relative {
   position: relative;
   z-index: 1;
+}
+
+/* ============================================
+   CONTACTS PAGE RESPONSIVE
+   ============================================ */
+
+/* Реквизиты - адаптивная сетка для мобильных */
+@media (max-width: 768px) {
+  /* Блоки реквизитов переключаются на вертикальный layout */
+  .glass-card-glow div[style*="grid-template-columns: 200px 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* Метки реквизитов */
+  .glass-card-glow div[style*="grid-template-columns: 200px 1fr"] span:first-child {
+    font-weight: 600 !important;
+  }
+  
+  /* Контейнеры реквизитов */
+  .glass-card-glow > div[style*="display: grid"] {
+    padding: 1rem !important;
+  }
+  
+  /* Заголовки блоков реквизитов */
+  .glass-card-glow h3 {
+    font-size: 1.15rem !important;
+  }
+  
+  /* Отступы для внутренних блоков */
+  .glass-card-glow > div > div[style*="padding: 1.5rem"] {
+    padding: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Уменьшаем padding для очень маленьких экранов */
+  .glass-card-glow > div > div[style*="padding: 1.5rem"] {
+    padding: 1rem !important;
+  }
+  
+  .glass-card-glow h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Иконки контактов */
+  .glass-icon[style*="width: 80px"] {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  .glass-icon[style*="width: 80px"] i {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Контактные блоки */
+  .glass-card-glow div[style*="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
 }

@@ -28,27 +28,26 @@ $projects = MarkdownParser::sort($projects, 'publishedAt', 'desc');
 startContent();
 ?>
 
-<section class="section" style="padding-top: 6rem;">
+<section class="glass-section" style="padding-top: 10rem;">
     <div class="container">
-        <h1 class="text-center text-burgundy mb-2">
-            <i class="fas fa-project-diagram"></i>
-            Наши проекты
+        <h1 class="glass-section-title glass-text-center">            
+            Проекты фонда
         </h1>
-        <p class="text-center" style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">
-            Фонд «Время Человека» поддерживает инициативы, направленные на укрепление
-            нравственных ценностей, продвижение трезвого образа жизни и заботу о детях.
-        </p>
-
+       
         <!-- Фильтры -->
-        <div class="floating-card" style="margin-bottom: 3rem;">
-            <h3 style="margin-bottom: 1rem;">
+        <div class="glass-filters-card">
+            <h3 class="glass-filters-title">
                 <i class="fas fa-filter"></i> Фильтры
             </h3>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="/projects" class="btn btn-outline filter-btn <?= !$category ? 'active' : '' ?>">Все категории</a>
+            <div class="glass-filters-grid">
+                <a href="/projects" class="glass-filter-btn <?= !$category ? 'active' : '' ?>">
+                    <i class="fas fa-th"></i>
+                    <span>Все категории</span>
+                </a>
                 <?php foreach (PROJECT_CATEGORIES as $key => $name): ?>
-                <a href="/projects?category=<?= e($key) ?>" class="btn btn-outline filter-btn <?= $category === $key ? 'active' : '' ?>">
-                    <?= e($name) ?>
+                <a href="/projects?category=<?= e($key) ?>" class="glass-filter-btn <?= $category === $key ? 'active' : '' ?>">
+                    <i class="fas fa-tag"></i>
+                    <span><?= e($name) ?></span>
                 </a>
                 <?php endforeach; ?>
             </div>
@@ -56,48 +55,60 @@ startContent();
 
         <!-- Список проектов -->
         <?php if (empty($projects)): ?>
-            <div class="floating-card text-center">
-                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Проектов по выбранным критериям не найдено.</p>
-                <a href="/projects" class="btn btn-primary">Сбросить фильтры</a>
+            <div class="glass-card glass-text-center">
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--glass-text-secondary);">Проектов по выбранным критериям не найдено.</p>
+                <a href="/projects" class="glass-btn glass-btn-primary">Сбросить фильтры</a>
             </div>
         <?php else: ?>
-            <div class="projects-grid" id="projects-list">
+            <div class="glass-projects-grid" id="projects-list">
                 <?php foreach ($projects as $project): ?>
                 <?php
-                    $progress = isset($project['targetAmount']) && $project['targetAmount'] > 0
-                        ? number_format(($project['collectedAmount'] ?? 0) / $project['targetAmount'] * 100, 1)
+                    // Безопасное вычисление прогресса с проверкой всех значений
+                    $collectedAmount = isset($project['collectedAmount']) && (!empty($project['collectedAmount'])) ? (float)$project['collectedAmount'] : 0;
+                    $targetAmount = isset($project['targetAmount']) ? (float)$project['targetAmount'] : 0;
+                    $progress = ($targetAmount > 0)
+                        ? number_format(($collectedAmount / $targetAmount) * 100, 1)
                         : 0;
                 ?>
-                <div class="project-card" data-category="<?= e($project['category'] ?? '') ?>">
+                <div class="glass-project-card" data-category="<?= e($project['category'] ?? '') ?>">
                     <?php if (!empty($project['imageUrl'])): ?>
-                    <img src="<?= e($project['imageUrl']) ?>" alt="<?= e($project['title']) ?>" class="project-image" />
+                    <div class="glass-project-image-wrapper">
+                        <img src="<?= e($project['imageUrl']) ?>" alt="<?= e($project['title']) ?>" class="glass-project-image" />
+                    </div>
                     <?php endif; ?>
-                    <div class="project-content">
-                        <span class="project-category"><?= e(PROJECT_CATEGORIES[$project['category']] ?? $project['category']) ?></span>
-                        <h3 class="project-title"><?= e($project['title']) ?></h3>
-                        <p class="project-description"><?= e($project['shortDescription'] ?? '') ?></p>
+                    <div class="glass-project-content">
+                        <span class="glass-project-category">
+                            <i class="fas fa-tag"></i>
+                            <?= e(PROJECT_CATEGORIES[$project['category']] ?? $project['category']) ?>
+                        </span>
+                        <h3 class="glass-project-title"><?= e($project['title']) ?></h3>
+                        <p class="glass-project-description"><?= e($project['shortDescription'] ?? '') ?></p>
                         
                         <?php if (isset($project['targetAmount']) && $project['targetAmount'] > 0): ?>
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Собрано</span>
-                                <span class="stat-value"><?= formatAmount($project['collectedAmount'] ?? 0) ?> ₽</span>
+                        <div class="glass-project-stats">
+                            <div class="glass-stat-item">
+                                <span class="glass-stat-label">Собрано</span>
+                                <span class="glass-stat-value"><?= formatAmount($collectedAmount) ?> ₽</span>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Цель</span>
-                                <span class="stat-value"><?= formatAmount($project['targetAmount']) ?> ₽</span>
+                            <div class="glass-stat-item">
+                                <span class="glass-stat-label">Цель</span>
+                                <span class="glass-stat-value"><?= formatAmount($project['targetAmount']) ?> ₽</span>
                             </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: <?= $progress ?>%"></div>
+                        <div class="glass-progress-bar">
+                            <div class="glass-progress-fill" style="width: <?= $progress ?>%">
+                                <span class="glass-progress-text"><?= $progress ?>%</span>
+                            </div>
                         </div>
                         <?php endif; ?>
                         
-                        <div style="display: flex; gap: 0.5rem;">
-                            <a href="/projects/<?= e($project['slug']) ?>" class="btn btn-outline" style="flex: 1; padding: 0.75rem;">
+                        <div class="glass-project-actions">
+                            <a href="/projects/<?= e($project['slug']) ?>" class="glass-btn glass-btn-outline">
+                                <i class="fas fa-info-circle"></i>
                                 Подробнее
                             </a>
-                            <a href="/projects/<?= e($project['slug']) ?>#donate" class="btn btn-primary" style="flex: 1; padding: 0.75rem;">
+                            <a href="/projects/<?= e($project['slug']) ?>#donate" class="glass-btn glass-btn-primary">
+                                <i class="fas fa-hand-holding-heart"></i>
                                 Помочь
                             </a>
                         </div>
@@ -109,13 +120,6 @@ startContent();
     </div>
 </section>
 
-<style>
-    .filter-btn.active {
-        background: var(--primary-red);
-        color: white;
-        border-color: var(--primary-red);
-    }
-</style>
 
 <?php
 // Завершаем буферизацию и рендерим страницу
