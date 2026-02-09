@@ -162,7 +162,7 @@ startContent();
                 <i class="fas fa-newspaper"></i>
                 Новости проекта
             </h2>
-            <div class="glass-grid glass-grid-3">
+            <div class="glass-grid glass-grid-1">
                 <?php foreach ($relatedNews as $item): ?>
                 <div class="glass-news-card glass-animate">
                     <?php if (!empty($item['imageUrl'])): ?>
@@ -194,36 +194,70 @@ startContent();
     </div>
 </section>
 
-        <!-- Призыв к действию -->
-        <div class="glass-section" id="donate">
-            <div class="glass-card-glow glass-animate" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <div class="glass-icon" style="margin: 0 auto 1.5rem;">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3 style="color: var(--glass-text-primary); margin-bottom: 1rem; font-size: 1.5rem;">Форма приёма пожертвований</h3>
-                <p style="color: var(--glass-text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">
-                    Здесь будет интегрирован виджет Робокассы для проекта "<?= e($project['title']) ?>"
-                </p>
-                <div style="background: rgba(10, 14, 39, 0.5); padding: 2rem; border-radius: 16px; border: 1px dashed rgba(212, 175, 55, 0.3); margin-bottom: 2rem;">
-                    <div style="font-family: monospace; color: var(--glass-text-muted); font-size: 0.9rem;">
-                        &lt;!-- Robokassa Widget Integration --&gt;<br>
-                        &lt;!-- Виджет будет добавлен при настройке платёжной системы --&gt;
-                    </div>
-                    <div style="text-align: left; color: var(--glass-text-secondary); margin-top: 1.5rem; line-height: 1.8;">
-                        <strong style="color: var(--glass-gold);">Параметры интеграции:</strong><br>
-                        • Проект: MerchantLogin=fund_project_<?= e($project['slug']) ?><br>
-                        • Возможность разовых и регулярных платежей<br>
-                        • Автоматическое обновление статистики сбора
-                    </div>
+   <section class="glass-section" id="donate">
+    <div class="container">
+
+
+    <div class="glass-mission-card glass-animate">
+            
+            <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
+                <!-- Логотип слева -->
+                <div style="flex: 0 0 auto;">
+                    <img src="/static/img/qr.jpg" alt="QR code фонда Время Человека" style="max-width: 350px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);" />
                 </div>
                 
-                <a href="/projects" class="glass-btn glass-btn-outline glass-btn-large">
-                    <i class="fas fa-th-large"></i> Другие проекты
-                </a>
+                <!-- Текст и кнопка справа -->
+                <div style="flex: 1 1 400px;">
+                    <h2 class="glass-mb-2">
+                        Поддержать фонд
+                    </h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--glass-text-secondary); line-height: 1.8;">
+                        Воспользуйтесь специальным qr-кодом для превода в приложении любого банка, например Сбербанк Онлайн. В разделе "Платежи" нажмите кнопку "Сканировать QR или телефон" и наведите камеру на изображение слева. Этот способ ускоряет заполнение реквизитов фонда. Вы можете также сделать перевод по реквизитам, указанным на странице "Контакты"
+                    </p>
+                    <a href="/contacts" class="glass-btn glass-btn-primary glass-btn-large" style="margin-top: 1.5rem;">
+                        <i class="fas fa-arrow-right"></i>
+                        Посмотреть реквизиты
+                    </a>
+                </div>
             </div>
         </div>
+
+     <!--    <h2 class="glass-section-title glass-animate">
+            
+            Поддержать фонд
+        </h2>
+        <div class="glass-card-glow glass-animate" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div class="glass-icon" style="margin: 0 auto 1.5rem;">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h3 style="color: var(--glass-text-primary); margin-bottom: 1rem; font-size: 1.5rem;">Форма приёма пожертвований</h3>
+            <p style="color: var(--glass-text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                Здесь будет интегрирован виджет Робокассы
+            </p>
+            <div style="background: rgba(10, 14, 39, 0.5); padding: 2rem; border-radius: 16px; border: 1px dashed rgba(212, 175, 55, 0.3);">
+                <div style="font-family: monospace; color: var(--glass-text-muted); font-size: 0.9rem;">
+                    &lt;!-- Robokassa Widget Integration --&gt;<br>
+                    &lt;!-- Виджет будет добавлен при настройке платёжной системы --&gt;
+                </div>
+                <div style="text-align: left; color: var(--glass-text-secondary); margin-top: 1.5rem; line-height: 1.8;">
+                    <strong style="color: var(--glass-gold);">Параметры интеграции:</strong><br>
+                    • Общий фонд: MerchantLogin=fund_general<br>
+                    • Целевые проекты: MerchantLogin=fund_project_{id}<br>
+                    • Возможность разовых и регулярных платежей
+                </div>
+            </div>
+        </div>
+         -->
+       
+        
+                    
+            
+       
+
+    
     </div>
 </section>
+
 
 <?php
 // Завершаем буферизацию и рендерим страницу

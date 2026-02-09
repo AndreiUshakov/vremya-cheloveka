@@ -6,7 +6,8 @@
 
 // Базовые настройки
 define('SITE_NAME', 'Время Человека');
-define('SITE_URL', 'https://vremyacheloveka.ru');
+define('SITE_URL', 'https://времячеловека.рф');
+/* define('SITE_URL', 'https://vremyacheloveka.ru'); */
 define('SITE_DESCRIPTION', 'Благотворительный фонд');
 
 // Корневая директория сайта
@@ -72,8 +73,8 @@ define('REGIONS', [
 
 // Контактная информация
 define('CONTACT_EMAIL', 'info@vremyacheloveka.ru');
-define('CONTACT_PHONE', '+7 (495) 123-45-67');
-define('CONTACT_ADDRESS', 'Москва, ул. Примерная, д. 1');
+define('CONTACT_PHONE', '+7 (914) 916-95-59');
+define('CONTACT_ADDRESS', 'Иркутск, ул. Горького, д. 27');
 
 // Социальные сети
 define('SOCIAL_VK', 'https://vk.com/vremyacheloveka');

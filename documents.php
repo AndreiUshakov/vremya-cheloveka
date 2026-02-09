@@ -38,14 +38,42 @@ startContent();
                     </div>
                 </a>
 
-                <!-- Пресс-релиз -->
-                <a href="/static/documents/press-release.pdf" target="_blank" class="glass-card" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem; transition: all 0.3s ease;">
+                <a href="/static/documents/oferta.pdf" target="_blank" class="glass-card" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem; transition: all 0.3s ease;">
                     <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);">
-                        <i class="fas fa-newspaper" style="font-size: 2rem; color: #0a0e27;"></i>
+                        <i class="fas fa-file-pdf" style="font-size: 2rem; color: #0a0e27;"></i>
                     </div>
-                    <h3 style="color: var(--glass-text-primary); font-size: 1.3rem; font-weight: 600; margin: 0; text-align: center;">Пресс-релиз</h3>
+                    <h3 style="color: var(--glass-text-primary); font-size: 1.3rem; font-weight: 600; margin: 0; text-align: center;">Публичная оферта</h3>
                     <p style="color: var(--glass-text-secondary); font-size: 0.95rem; margin: 0; text-align: center; line-height: 1.6;">
-                        Информационные материалы для СМИ о деятельности фонда
+                        Публичная оферта для физических лиц, онлайн-перевод
+                    </p>
+                    <div class="glass-btn glass-btn-primary" style="margin-top: auto;">
+                        <i class="fas fa-download"></i>
+                        Скачать PDF
+                    </div>
+                </a>
+
+                <a href="/static/documents/contractul.docx" target="_blank" class="glass-card" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem; transition: all 0.3s ease;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);">
+                        <i class="fas fa-file-word" style="font-size: 2rem; color: #0a0e27;"></i>
+                    </div>
+                    <h3 style="color: var(--glass-text-primary); font-size: 1.3rem; font-weight: 600; margin: 0; text-align: center;">Договор пожертвования</h3>
+                    <p style="color: var(--glass-text-secondary); font-size: 0.95rem; margin: 0; text-align: center; line-height: 1.6;">
+                        Шаблон договора пожертвования для юридических лиц
+                    </p>
+                    <div class="glass-btn glass-btn-primary" style="margin-top: auto;">
+                        <i class="fas fa-download"></i>
+                        Скачать DOCX
+                    </div>
+                </a>
+
+                <!-- Пресс-релиз -->
+                <a href="/static/documents/infolgoty.pdf" target="_blank" class="glass-card" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem; transition: all 0.3s ease;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #fde9a9 0%, #ffb340 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);">
+                        <i class="fas fa-file-pdf" style="font-size: 2rem; color: #0a0e27;"></i>
+                    </div>
+                    <h3 style="color: var(--glass-text-primary); font-size: 1.3rem; font-weight: 600; margin: 0; text-align: center;">Памятка о льготах</h3>
+                    <p style="color: var(--glass-text-secondary); font-size: 0.95rem; margin: 0; text-align: center; line-height: 1.6;">
+                        Памятка о льготах для желающих сделать пожертвование
                     </p>
                     <div class="glass-btn glass-btn-primary" style="margin-top: auto;">
                         <i class="fas fa-download"></i>

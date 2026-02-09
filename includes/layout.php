@@ -35,7 +35,7 @@ function renderLayout($content, $meta = []) {
     <meta name="twitter:image" content="<?= e($metaTags['image']) ?>">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,9 +74,9 @@ function renderLayout($content, $meta = []) {
                     <h4>Навигация</h4>
                     <ul class="footer-links">
                         <li><a href="/">Главная</a></li>
-                        <li><a href="/projects">Проекты</a></li>
-                        <li><a href="/news">Новости</a></li>
-                        <li><a href="/about">О фонде</a></li>
+                        <li><a href="/projects">О фонде</a></li>
+                        <li><a href="/news">Проекты</a></li>
+                        <li><a href="/about">Новости</a></li>
                         <li><a href="/documents">Документы</a></li>
                         <li><a href="/contacts">Контакты</a></li>
                     </ul>
@@ -91,10 +91,11 @@ function renderLayout($content, $meta = []) {
                 </div>
                 <div class="footer-section">
                     <h4>Правовая информация</h4>
-                    <ul class="footer-links">
-                        <li><a href="/privacy">Политика конфиденциальности</a></li>
-                        <li><a href="/terms">Пользовательское соглашение</a></li>
-                        <li><a href="/legal">Юридические документы</a></li>
+                    <ul class="footer-links">                        
+                        <li><a href="/static/documents/oferta.pdf" target="_blank">Публичная оферта</a></li>
+                        <li><a href="/static/documents/ustav.pdf" target="_blank">Устав фонда</a></li>
+                        <li><a href="/static/documents/best2pay_policy.pdf" target="_blank">Политика безопасности платежей</a></li>
+                        
                     </ul>
                 </div>
             </div>

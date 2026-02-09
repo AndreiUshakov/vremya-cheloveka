@@ -33,7 +33,7 @@ startContent();
 
         <!-- Сетка новостей -->
         <?php if (!empty($allNews)): ?>
-        <div class="glass-grid glass-grid-3">
+        <div class="glass-grid glass-grid-1">
             <?php foreach ($allNews as $index => $newsItem): ?>
             <div class="glass-news-card glass-animate-delay-<?= ($index % 3) + 1 ?>">
                 <?php if (!empty($newsItem['imageUrl'])): ?>

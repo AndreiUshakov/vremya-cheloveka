@@ -517,7 +517,7 @@ try {
             
             Новости и обновления
         </h2>
-        <div class="glass-grid glass-grid-3">
+        <div class="glass-grid glass-grid-1">
             <?php foreach ($featuredNews as $item): ?>
             <div class="glass-news-card glass-animate-delay-<?= ($news_index = array_search($item, $featuredNews) + 1) > 3 ? 3 : $news_index ?>">
                 <?php if (!empty($item['imageUrl'])): ?>
@@ -551,7 +551,33 @@ try {
 <!-- Заглушка для формы пожертвований -->
 <section class="glass-section" id="donate">
     <div class="container">
-        <h2 class="glass-section-title glass-animate">
+
+
+    <div class="glass-mission-card glass-animate">
+            
+            <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
+                <!-- Логотип слева -->
+                <div style="flex: 0 0 auto;">
+                    <img src="/static/img/qr.jpg" alt="QR code фонда Время Человека" style="max-width: 350px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);" />
+                </div>
+                
+                <!-- Текст и кнопка справа -->
+                <div style="flex: 1 1 400px;">
+                    <h2 class="glass-mb-2">
+                        Поддержать фонд
+                    </h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--glass-text-secondary); line-height: 1.8;">
+                        Воспользуйтесь специальным qr-кодом для превода в приложении любого банка, например Сбербанк Онлайн. В разделе "Платежи" нажмите кнопку "Сканировать QR или телефон" и наведите камеру на изображение слева. Этот способ ускоряет заполнение реквизитов фонда. Вы можете также сделать перевод по реквизитам, указанным на странице "Контакты"
+                    </p>
+                    <a href="/contacts" class="glass-btn glass-btn-primary glass-btn-large" style="margin-top: 1.5rem;">
+                        <i class="fas fa-arrow-right"></i>
+                        Посмотреть реквизиты
+                    </a>
+                </div>
+            </div>
+        </div>
+
+     <!--    <h2 class="glass-section-title glass-animate">
             
             Поддержать фонд
         </h2>
@@ -576,6 +602,14 @@ try {
                 </div>
             </div>
         </div>
+         -->
+       
+        
+                    
+            
+       
+
+    
     </div>
 </section>
 

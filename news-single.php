@@ -131,7 +131,7 @@ startContent();
                 <i class="fas fa-newspaper"></i>
                 Другие новости
             </h2>
-            <div class="glass-grid glass-grid-3">
+            <div class="glass-grid glass-grid-1">
                 <?php foreach ($otherNews as $item): ?>
                 <div class="glass-news-card glass-animate">
                     <?php if (!empty($item['imageUrl'])): ?>

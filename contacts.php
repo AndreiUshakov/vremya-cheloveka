@@ -56,7 +56,7 @@ startContent();
         </div>
         
         <!-- Карта Яндекс.Карты -->
-        <div class="glass-card-glow glass-animate" style="max-width: 1200px; margin: 0 auto 3rem;">
+        <!-- <div class="glass-card-glow glass-animate" style="max-width: 1200px; margin: 0 auto 3rem;">
             <h2 style="color: var(--glass-gold); font-size: 2rem; margin-bottom: 1.5rem; font-weight: 600;">
                 Как нас найти
             </h2>
@@ -67,7 +67,7 @@ startContent();
                 <i class="fas fa-info-circle" style="color: var(--glass-gold);"></i>
                 Интерактивная карта будет доступна после настройки API-ключа Яндекс.Карт
             </p>
-        </div>
+        </div> -->
         
         <!-- Реквизиты -->
         <div class="glass-card-glow glass-animate" style="max-width: 1200px; margin: 0 auto;">
@@ -77,22 +77,19 @@ startContent();
             
             <div style="display: grid; gap: 1.5rem;">
                 <!-- Основная информация -->
-                <div style="padding: 1.5rem; background: rgba(10, 14, 39, 0.3); border-radius: 12px; border-left: 4px solid var(--glass-gold);">
+                <!--     <div style="padding: 1.5rem; background: rgba(10, 14, 39, 0.3); border-radius: 12px; border-left: 4px solid var(--glass-gold);">
                     <h3 style="color: var(--glass-text-primary); font-size: 1.35rem; margin-bottom: 1.25rem; font-weight: 600;">
                         Основная информация
                     </h3>
                     <div style="display: grid; gap: 1rem;">
+                       
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
-                            <span style="color: var(--glass-text-secondary); font-weight: 500;">Полное наименование:</span>
-                            <span style="color: var(--glass-text-primary);">Благотворительный фонд поддержки инициатив в области народосбережения и просвещения «Время Человека»</span>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
-                            <span style="color: var(--glass-text-secondary); font-weight: 500;">Сокращённое наименование:</span>
-                            <span style="color: var(--glass-text-primary);">БФ «Время Человека»</span>
+                            <span style="color: var(--glass-text-secondary); font-weight: 500;">Наименование:</span>
+                            <span style="color: var(--glass-text-primary);">ФОНД "ВРЕМЯ ЧЕЛОВЕКА"</span>
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">ИНН:</span>
-                            <span style="color: var(--glass-text-primary);">3808123456</span>
+                            <span style="color: var(--glass-text-primary);">3808295287</span>
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">КПП:</span>
@@ -100,14 +97,14 @@ startContent();
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">ОГРН:</span>
-                            <span style="color: var(--glass-text-primary);">1233800012345</span>
+                            <span style="color: var(--glass-text-primary);">1253800019934</span>
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">Юридический адрес:</span>
                             <span style="color: var(--glass-text-primary);">664007, г. Иркутск, ул. Горького, д. 27</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
                 <!-- Банковские реквизиты -->
                 <div style="padding: 1.5rem; background: rgba(10, 14, 39, 0.3); border-radius: 12px; border-left: 4px solid var(--glass-gold);">
@@ -116,26 +113,42 @@ startContent();
                     </h3>
                     <div style="display: grid; gap: 1rem;">
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
+                            <span style="color: var(--glass-text-secondary); font-weight: 500;">Наименование:</span>
+                            <span style="color: var(--glass-text-primary);">ФОНД "ВРЕМЯ ЧЕЛОВЕКА"</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
+                            <span style="color: var(--glass-text-secondary); font-weight: 500;">ИНН:</span>
+                            <span style="color: var(--glass-text-primary);">3808295287</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
+                            <span style="color: var(--glass-text-secondary); font-weight: 500;">КПП:</span>
+                            <span style="color: var(--glass-text-primary);">380801001</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
+                            <span style="color: var(--glass-text-secondary); font-weight: 500;">ОГРН:</span>
+                            <span style="color: var(--glass-text-primary);">1253800019934</span>
+                        </div>                       
+                        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">Банк:</span>
-                            <span style="color: var(--glass-text-primary);">ПАО «Сбербанк России»</span>
+                            <span style="color: var(--glass-text-primary);">БАЙКАЛЬСКИЙ БАНК ПАО СБЕРБАНК</span>
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">БИК:</span>
-                            <span style="color: var(--glass-text-primary);">042520000</span>
+                            <span style="color: var(--glass-text-primary);">042520607</span>
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">Корр. счёт:</span>
-                            <span style="color: var(--glass-text-primary);">30101810400000000225</span>
+                            <span style="color: var(--glass-text-primary);">30101810900000000607</span>
                         </div>
                         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start;">
                             <span style="color: var(--glass-text-secondary); font-weight: 500;">Расчётный счёт:</span>
-                            <span style="color: var(--glass-text-primary);">40703810538000001234</span>
+                            <span style="color: var(--glass-text-primary);">40703810618750000199</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Руководство -->
-                <div style="padding: 1.5rem; background: rgba(10, 14, 39, 0.3); border-radius: 12px; border-left: 4px solid var(--glass-gold);">
+                <!-- <div style="padding: 1.5rem; background: rgba(10, 14, 39, 0.3); border-radius: 12px; border-left: 4px solid var(--glass-gold);">
                     <h3 style="color: var(--glass-text-primary); font-size: 1.35rem; margin-bottom: 1.25rem; font-weight: 600;">
                         Руководство
                     </h3>
@@ -149,18 +162,25 @@ startContent();
                             <span style="color: var(--glass-text-primary);">Действует на основании Устава</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             
-            <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05)); border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2);">
-                <p style="color: var(--glass-text-secondary); margin: 0; font-size: 1.05rem; line-height: 1.7;">
-                    <i class="fas fa-info-circle" style="color: var(--glass-gold); margin-right: 0.5rem;"></i>
-                    Для получения актуальных реквизитов и документов для перечисления средств, пожалуйста, свяжитесь с нами по указанным контактам.
-                </p>
+            <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;margin-top:2rem;">
+                <!-- Логотип слева -->
+                <div style="flex: 0 0 auto;">
+                    <img src="/static/img/qr.jpg" alt="QR code фонда Время Человека" style="max-width: 350px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);">
+                </div>                
+                <!-- Текст и кнопка справа -->
+                <div style="flex: 1 1 400px;">                    
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--glass-text-secondary); line-height: 1.8;">
+                        Воспользуйтесь специальным qr-кодом для превода в приложении любого банка, например Сбербанк Онлайн. В разделе "Платежи" нажмите кнопку "Сканировать QR или телефон" и наведите камеру на изображение слева. Этот способ ускоряет заполнение реквизитов фонда. Вы можете также сделать перевод по реквизитам, указанным на странице "Контакты"
+                    </p>                    
+                </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- Призыв к действию -->
 <section class="glass-section">
@@ -188,7 +208,7 @@ startContent();
 </section>
 
 <!-- Скрипт Яндекс.Карт -->
-<script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
+<!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
 <script type="text/javascript">
     // Инициализация карты после загрузки API
     ymaps.ready(init);
@@ -217,7 +237,7 @@ startContent();
         // Отключаем скролл карты колесом мыши
         myMap.behaviors.disable('scrollZoom');
     }
-</script>
+</script> -->
 
 <?php
 // Завершаем буферизацию и рендерим страницу
